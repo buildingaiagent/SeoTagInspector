@@ -104,7 +104,7 @@ export function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
                 {t("analyzing")} {/*Using translation for analyzing*/}
               </span>
             ) : (
-              Analyze Tags
+              t("analyzeTags")
             )}
           </Button>
         </div>
