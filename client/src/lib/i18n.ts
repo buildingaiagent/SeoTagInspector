@@ -22,7 +22,8 @@ const resources = {
       pleaseEnterValidUrl: 'Please enter a valid URL',
       websiteUrl: 'Website URL',
       enterWebsiteUrl: 'Enter website URL',
-      analyzeTags: 'Analyze Tags'
+      analyzeTags: 'Analyze Tags',
+      clearUrl: 'Clear URL'
     }
   },
   tr: {
@@ -43,7 +44,8 @@ const resources = {
       pleaseEnterValidUrl: 'Lütfen geçerli bir URL girin',
       websiteUrl: 'Web Sitesi URL',
       enterWebsiteUrl: 'Web sitesi URL\'sini girin',
-      analyzeTags: 'Etiketleri Analiz Et'
+      analyzeTags: 'Etiketleri Analiz Et',
+      clearUrl: 'URL\'yi Temizle'
     }
   }
 };
