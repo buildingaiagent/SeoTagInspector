@@ -74,7 +74,7 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
           let iconColor = "text-blue-500";
           let borderColor = "border-l-blue-500";
           let Icon = Info;
-          
+
           if (issue.type === "error") {
             bgColor = "bg-red-50";
             iconColor = "text-red-500";
@@ -86,7 +86,7 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
             borderColor = "border-l-amber-500";
             Icon = AlertTriangle;
           }
-          
+
           return (
             <div key={index} className={`p-4 ${bgColor} border-l-4 ${borderColor}`}>
               <div className="flex items-start gap-3">
@@ -96,6 +96,30 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
                 <div>
                   <h4 className="text-sm font-medium">{issue.message}</h4>
                   <p className="mt-1 text-sm text-slate-600">{issue.recommendation}</p>
+                  <div className="mt-2 p-2 bg-slate-50 rounded-md border border-slate-200">
+                    <h5 className="text-xs font-semibold text-slate-700 mb-1">Action Steps:</h5>
+                    <ol className="text-xs text-slate-600 list-decimal list-inside space-y-1">
+                      {issue.type === "error" ? (
+                        <>
+                          <li>Prioritize fixing this issue as it significantly impacts SEO</li>
+                          <li>Review the provided recommendation carefully</li>
+                          <li>Implement the changes in your HTML metadata</li>
+                          <li>Re-run the analysis to verify the fix</li>
+                        </>
+                      ) : issue.type === "warning" ? (
+                        <>
+                          <li>Consider addressing this issue to improve SEO performance</li>
+                          <li>Follow the recommendation guidelines</li>
+                          <li>Test the changes to ensure they meet requirements</li>
+                        </>
+                      ) : (
+                        <>
+                          <li>Review this suggestion for potential improvements</li>
+                          <li>Implement if aligned with your SEO strategy</li>
+                        </>
+                      )}
+                    </ol>
+                  </div>
                 </div>
               </div>
             </div>
