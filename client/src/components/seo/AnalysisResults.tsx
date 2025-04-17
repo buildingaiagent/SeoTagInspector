@@ -17,6 +17,14 @@ interface AnalysisResultsProps {
 }
 
 export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
+  if (!analysis) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <p className="text-slate-500">No analysis results available</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6 sm:space-y-8">
       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 sm:p-6">
