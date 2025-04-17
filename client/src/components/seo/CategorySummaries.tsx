@@ -20,6 +20,7 @@ interface CategoryScore {
 }
 
 export default function CategorySummaries({ analysis }: CategorySummariesProps) {
+  const { t } = useTranslation();
   // Helper function to calculate category scores
   const calculateCategoryScore = (category: string): CategoryScore => {
     const bestPractices = analysis.bestPractices || [];
@@ -51,7 +52,7 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
       status = "good";
       color = "green";
       icon = <CheckCircle className="h-5 w-5 text-green-500" />;
-      details = "All essential elements present";
+      details = t('allEssentialElements');
     } else if (score >= 50) {
       status = "fair";
       color = "amber";
@@ -133,10 +134,10 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             {technicalScore.icon}
-            <h3 className="text-md font-medium text-slate-700">Technical SEO</h3>
+            <h3 className="text-md font-medium text-slate-700">{t('technicalSeo')}</h3>
           </div>
           <Badge className={`${getBadgeColor(technicalScore.status)} border`}>
-            {technicalScore.status === "good" ? "Good" : technicalScore.status === "fair" ? "Needs Work" : "Critical"}
+            {technicalScore.status === "good" ? t('good') : technicalScore.status === "fair" ? t('needsWork') : t('critical')}
           </Badge>
         </div>
         <Progress 
@@ -146,7 +147,7 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <p className="text-sm text-slate-500 mt-1">{technicalScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
-          Includes viewport, charset, language, and robots
+          {t('includesViewport')}
         </div>
       </Card>
 
@@ -155,10 +156,10 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             {contentScore.icon}
-            <h3 className="text-md font-medium text-slate-700">Content</h3>
+            <h3 className="text-md font-medium text-slate-700">{t('content')}</h3>
           </div>
           <Badge className={`${getBadgeColor(contentScore.status)} border`}>
-            {contentScore.status === "good" ? "Good" : contentScore.status === "fair" ? "Needs Work" : "Critical"}
+            {contentScore.status === "good" ? t('good') : contentScore.status === "fair" ? t('needsWork') : t('critical')}
           </Badge>
         </div>
         <Progress 
@@ -168,7 +169,7 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <p className="text-sm text-slate-500 mt-1">{contentScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
-          Includes title and meta description
+          {t('includesTitle')}
         </div>
       </Card>
 
@@ -177,10 +178,10 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             {socialScore.icon}
-            <h3 className="text-md font-medium text-slate-700">Social Sharing</h3>
+            <h3 className="text-md font-medium text-slate-700">{t('socialSharing')}</h3>
           </div>
           <Badge className={`${getBadgeColor(socialScore.status)} border`}>
-            {socialScore.status === "good" ? "Good" : socialScore.status === "fair" ? "Needs Work" : "Critical"}
+            {socialScore.status === "good" ? t('good') : socialScore.status === "fair" ? t('needsWork') : t('critical')}
           </Badge>
         </div>
         <Progress 
@@ -190,7 +191,7 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <p className="text-sm text-slate-500 mt-1">{socialScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
-          Includes Open Graph and Twitter Card tags
+          {t('includesOpenGraph')}
         </div>
       </Card>
 
@@ -199,10 +200,10 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             {structureScore.icon}
-            <h3 className="text-md font-medium text-slate-700">Structure</h3>
+            <h3 className="text-md font-medium text-slate-700">{t('structure')}</h3>
           </div>
           <Badge className={`${getBadgeColor(structureScore.status)} border`}>
-            {structureScore.status === "good" ? "Good" : structureScore.status === "fair" ? "Needs Work" : "Critical"}
+            {structureScore.status === "good" ? t('good') : structureScore.status === "fair" ? t('needsWork') : t('critical')}
           </Badge>
         </div>
         <Progress 
@@ -212,7 +213,7 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         <p className="text-sm text-slate-500 mt-1">{structureScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
-          Includes canonical URLs and page structure
+          {t('includesCanonical')}
         </div>
       </Card>
     </div>
