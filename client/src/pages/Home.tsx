@@ -8,12 +8,14 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { AlertCircle, Search, Share, CheckCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageSelector } from "@/components/ui/language-selector"; // Added import for language selector
+import { useTranslation } from 'react-i18next';
 
 
 export default function Home() {
   const [url, setUrl] = useState("");
   const [analyzed, setAnalyzed] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const {
     data: analysis,
@@ -35,8 +37,8 @@ export default function Home() {
     try {
       // Show a progress toast
       toast({
-        title: "Analyzing Website",
-        description: "Fetching and parsing the website content...",
+        title: t('analyzingMetaTags'),
+        description: t('fetchingParsing'),
       });
 
       // Make the API request - ensure we get the response as JSON
@@ -50,8 +52,8 @@ export default function Home() {
 
       // Success toast
       toast({
-        title: "Analysis Complete",
-        description: "Website analysis completed successfully.",
+        title: t('analyzeComplete', 'Analysis Complete'),
+        description: t('analysisSuccess', 'Website analysis completed successfully.'),
         variant: "default",
       });
     } catch (err) {
@@ -99,9 +101,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
             <div>
               <h1 className="text-2xl sm:text-3xl font-semibold text-slate-800">
-                SEO Tag Analyzer
+                {t('seoTagAnalyzer')}
               </h1>
-              <p className="text-slate-500 mt-1">Visualize and analyze your website's meta tags</p>
+              <p className="text-slate-500 mt-1">{t('visualizeAnalyze')}</p>
             </div>
             <Button 
               onClick={handleReset} 
@@ -110,7 +112,7 @@ export default function Home() {
               className="w-full sm:w-auto flex items-center justify-center gap-2"
             >
               <RotateCcw className="h-4 w-4" />
-              Reset
+              {t('reset')}
             </Button>
           </div>
 
@@ -123,9 +125,9 @@ export default function Home() {
         {(isLoading || isFetching) && (
           <div className="flex flex-col items-center justify-center py-10 sm:py-12">
             <div className="w-16 h-16 border-4 border-blue-200 border-t-primary rounded-full animate-spin mb-4"></div>
-            <h2 className="text-xl font-medium text-slate-700 mb-2">Analyzing Meta Tags</h2>
+            <h2 className="text-xl font-medium text-slate-700 mb-2">{t('analyzingMetaTags')}</h2>
             <p className="text-slate-500 text-center max-w-md">
-              Fetching and parsing the HTML from the website. This may take a moment depending on the site's size.
+              {t('fetchingParsing')}
             </p>
           </div>
         )}
@@ -137,16 +139,16 @@ export default function Home() {
                 <AlertCircle className="h-6 w-6 text-red-500" />
               </div>
               <div>
-                <h3 className="text-lg font-medium text-red-800 mb-2">Error Analyzing Website</h3>
+                <h3 className="text-lg font-medium text-red-800 mb-2">{t('errorAnalyzing')}</h3>
                 <p className="text-red-700 mb-4">
-                  {error instanceof Error ? error.message : "Failed to analyze website"}
+                  {error instanceof Error ? error.message : t('failedToAnalyze')}
                 </p>
                 <Button 
                   onClick={() => handleAnalyze(url)} 
                   variant="outline"
                   className="w-full sm:w-auto border-red-300 text-red-700 hover:bg-red-50"
                 >
-                  Try Again
+                  {t('tryAgain')}
                 </Button>
               </div>
             </div>
@@ -164,9 +166,9 @@ export default function Home() {
                 <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold text-slate-800 mb-3">Analyze Your Website's SEO Tags</h2>
+            <h2 className="text-xl font-semibold text-slate-800 mb-3">{t('analyzeYourWebsite')}</h2>
             <p className="text-slate-500 max-w-lg mx-auto mb-8">
-              Enter a website URL above to check meta tags, generate previews, and get recommendations to improve your SEO and social sharing.
+              {t('enterWebsiteAbove')}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
               <div className="flex items-start bg-slate-50 p-4 rounded-lg">
@@ -174,8 +176,8 @@ export default function Home() {
                   <Search className="h-5 w-5 text-primary" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="font-medium text-slate-800">Search Previews</h3>
-                  <p className="text-sm text-slate-500">See how your site appears in Google search results</p>
+                  <h3 className="font-medium text-slate-800">{t('searchPreviews')}</h3>
+                  <p className="text-sm text-slate-500">{t('seeHowSite')}</p>
                 </div>
               </div>
               <div className="flex items-start bg-slate-50 p-4 rounded-lg">
@@ -183,8 +185,8 @@ export default function Home() {
                   <Share className="h-5 w-5 text-primary" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="font-medium text-slate-800">Social Media Cards</h3>
-                  <p className="text-sm text-slate-500">Preview Facebook, Twitter and LinkedIn appearances</p>
+                  <h3 className="font-medium text-slate-800">{t('socialMediaCards')}</h3>
+                  <p className="text-sm text-slate-500">{t('previewSocial')}</p>
                 </div>
               </div>
               <div className="flex items-start bg-slate-50 p-4 rounded-lg sm:col-span-2 lg:col-span-1">
@@ -192,8 +194,8 @@ export default function Home() {
                   <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="font-medium text-slate-800">SEO Recommendations</h3>
-                  <p className="text-sm text-slate-500">Get tips to improve your meta tags and SEO</p>
+                  <h3 className="font-medium text-slate-800">{t('seoRecommendations')}</h3>
+                  <p className="text-sm text-slate-500">{t('getTips')}</p>
                 </div>
               </div>
             </div>

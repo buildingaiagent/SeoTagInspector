@@ -206,14 +206,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         </div>
         <Progress 
           value={structureScore.score} 
-          className="h-2 mb-2" 
+          className={`h-2 mb-2 ${getProgressClassNames(structureScore.status)}`}
         />
-        <style>{`
-          .h-2.mb-2 > div {
-            background-color: ${structureScore.status === "good" ? "var(--green-500)" : 
-            structureScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
-          }
-        `}</style>
         <p className="text-sm text-slate-500 mt-1">{structureScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
