@@ -7,6 +7,8 @@ const resources = {
   en: {
     translation: {
       analyze: 'Analyze',
+      analyzing: 'Analyzing...',
+      analyzeTags: 'Analyze Tags',
       enterUrl: 'Enter website URL (e.g., example.com)',
       overallScore: 'Overall Score',
       seoHealth: 'SEO Health',
@@ -19,19 +21,21 @@ const resources = {
       socialPreviews: 'Social Media Previews'
     }
   },
-  es: {
+  tr: {
     translation: {
-      analyze: 'Analizar',
-      enterUrl: 'Ingrese la URL del sitio web (ej: ejemplo.com)',
-      overallScore: 'Puntuación General',
-      seoHealth: 'Salud SEO',
-      bestPractices: 'Mejores Prácticas',
-      recommendations: 'Recomendaciones',
-      errors: 'Errores',
-      warnings: 'Advertencias',
-      info: 'Información',
-      googlePreview: 'Vista previa de Google',
-      socialPreviews: 'Vistas previas de Redes Sociales'
+      analyze: 'Analiz Et',
+      analyzing: 'Analiz Ediliyor...',
+      analyzeTags: 'Etiketleri Analiz Et',
+      enterUrl: 'Web sitesi URL\'sini girin (örn: example.com)',
+      overallScore: 'Genel Puan',
+      seoHealth: 'SEO Sağlığı',
+      bestPractices: 'En İyi Uygulamalar',
+      recommendations: 'Öneriler',
+      errors: 'Hatalar',
+      warnings: 'Uyarılar',
+      info: 'Bilgi',
+      googlePreview: 'Google Önizleme',
+      socialPreviews: 'Sosyal Medya Önizlemeleri'
     }
   }
 };
@@ -41,7 +45,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en',
+    fallbackLng: 'tr',
     interpolation: {
       escapeValue: false
     }
