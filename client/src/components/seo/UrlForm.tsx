@@ -9,7 +9,7 @@ interface UrlFormProps {
   isLoading: boolean;
 }
 
-export function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
+export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
   const { t } = useTranslation(); //Added translation hook
   const [url, setUrl] = useState("");
   const [urlError, setUrlError] = useState("");
