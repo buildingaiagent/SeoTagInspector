@@ -55,8 +55,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'tr', // Default language is Turkish
-    lng: 'tr', // Force Turkish as the initial language
+    fallbackLng: 'en', // Default language is English
+    lng: localStorage.getItem('i18nextLng') || 'en', // Use saved language or default to English
     debug: true,
     interpolation: {
       escapeValue: false

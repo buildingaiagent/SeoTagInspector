@@ -13,7 +13,7 @@ import ReactCountryFlag from 'react-country-flag';
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
-  const [currentLanguage, setCurrentLanguage] = useState(i18n.language || 'tr');
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language || 'en');
 
   // Update the language state when it changes
   useEffect(() => {
@@ -44,13 +44,6 @@ export function LanguageSelector() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" className="flex items-center justify-center p-0 h-9 w-9">
           <Globe className="h-4 w-4" />
-          <div className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4">
-            <ReactCountryFlag 
-              countryCode={currentLanguage === 'tr' ? 'TR' : 'GB'} 
-              svg 
-              style={{ width: '12px', height: '12px' }} 
-            />
-          </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
