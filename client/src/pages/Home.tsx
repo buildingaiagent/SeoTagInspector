@@ -4,7 +4,7 @@ import UrlForm from "@/components/seo/UrlForm";
 import AnalysisResults from "@/components/seo/AnalysisResults";
 import { useQuery } from "@tanstack/react-query";
 import { SEOAnalysis } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { AlertCircle, Search, Share, CheckCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -37,11 +37,13 @@ export default function Home() {
         description: "Fetching and parsing the website content...",
       });
       
-      // Make the API request
-      await apiRequest("POST", "/api/analyze", { url: websiteUrl });
+      // Make the API request - ensure we get the response as JSON
+      const response = await apiRequest("POST", "/api/analyze", { url: websiteUrl });
+      const data = await response.json();
       
-      // Fetch the analysis results
-      await refetch();
+      // Instead of refetching, use the data we just got
+      // This avoids the JSON parsing error since we handle it here
+      queryClient.setQueryData(["/api/analyze"], data);
       setAnalyzed(true);
       
       // Success toast
@@ -65,6 +67,8 @@ export default function Home() {
           errorMessage = "The URL doesn't return HTML content. Please try a different URL.";
         } else if (message.includes("CORS") || message.includes("cross-origin")) {
           errorMessage = "Website blocks external access. Try a different website.";
+        } else if (message.includes("Unexpected token")) {
+          errorMessage = "Received invalid data. The website may be blocking our analyzer.";
         } else {
           errorMessage = message;
         }

@@ -14,11 +14,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!url) {
         return res.status(400).json({ message: "URL is required" });
       }
+      
+      // Basic URL validation
+      if (typeof url !== 'string' || url.trim() === '') {
+        return res.status(400).json({ message: "Invalid URL provided" });
+      }
 
       let formattedUrl = url;
       // Add https:// if not present
       if (!url.startsWith("http://") && !url.startsWith("https://")) {
         formattedUrl = `https://${url}`;
+      }
+      
+      // Additional validation - make sure it's a valid URL
+      try {
+        new URL(formattedUrl);
+      } catch (urlError) {
+        return res.status(400).json({ message: "Invalid URL format" });
       }
 
       // Fetch the HTML content from the URL
@@ -54,9 +66,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
 
         const html = await response.text();
-        const analysis = analyzeHTML(html, formattedUrl);
-
-        return res.status(200).json(analysis);
+        
+        // Some websites return empty HTML or non-HTML content with text/html content-type
+        if (!html || html.trim() === '') {
+          return res.status(400).json({
+            message: "The website returned empty content",
+          });
+        }
+        
+        try {
+          const analysis = analyzeHTML(html, formattedUrl);
+          return res.status(200).json(analysis);
+        } catch (parseError) {
+          console.error("Error parsing HTML:", parseError);
+          return res.status(500).json({
+            message: "Failed to parse HTML content: " + (parseError instanceof Error ? parseError.message : "Unknown error"),
+          });
+        }
       } catch (fetchError) {
         console.error("Error fetching URL:", fetchError);
         return res.status(500).json({
