@@ -79,7 +79,7 @@ export function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
                     type="button"
                     onClick={() => setUrl("")}
                     className="text-slate-400 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
-                    aria-label={t("clearUrl")} {/*Using translation for aria-label*/}
+                    aria-label={t("clearUrl")}
                   >
                     <X className="h-5 w-5" />
                   </button>
