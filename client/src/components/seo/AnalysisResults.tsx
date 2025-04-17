@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SEOAnalysis } from "@shared/schema";
 import ScoreOverview from "./ScoreOverview";
@@ -14,7 +14,6 @@ interface AnalysisResultsProps {
 }
 
 export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
-  const [activeTab, setActiveTab] = useState("analysis");
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -24,77 +23,68 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
             <h2 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-1">SEO Analysis Results</h2>
             <p className="text-slate-500">{`Analyzed ${analysis.url}`}</p>
           </div>
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full sm:w-auto">
-            <TabsList className="w-full sm:w-auto bg-slate-100 rounded-full p-1 h-auto">
+        </div>
+
+        <Tabs defaultValue="analysis">
+          <div className="flex justify-end mb-6">
+            <TabsList className="bg-slate-100 rounded-full p-1 h-auto">
               <TabsTrigger 
                 value="analysis" 
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-sm ${
-                  activeTab === "analysis" 
-                    ? "bg-white shadow-sm text-primary rounded-full" 
-                    : "text-slate-600 hover:text-primary rounded-full"
-                }`}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <ChartBar className="h-4 w-4" />
                 <span className="hidden sm:inline">Analysis</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="previews" 
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-sm ${
-                  activeTab === "previews" 
-                    ? "bg-white shadow-sm text-primary rounded-full" 
-                    : "text-slate-600 hover:text-primary rounded-full"
-                }`}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <Image className="h-4 w-4" />
                 <span className="hidden sm:inline">Previews</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="tags" 
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-sm ${
-                  activeTab === "tags" 
-                    ? "bg-white shadow-sm text-primary rounded-full" 
-                    : "text-slate-600 hover:text-primary rounded-full"
-                }`}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <Code className="h-4 w-4" />
                 <span className="hidden sm:inline">All Tags</span>
               </TabsTrigger>
             </TabsList>
-          </Tabs>
-        </div>
+          </div>
 
-        <ScoreOverview analysis={analysis} />
+          <ScoreOverview analysis={analysis} />
 
-        <TabsContent value="analysis" className="space-y-6 mt-6">
-          <RecommendationsList issues={analysis.issues || []} />
-          <BestPractices bestPractices={analysis.bestPractices || []} />
-        </TabsContent>
+          <TabsContent value="analysis" className="space-y-6 mt-6">
+            <RecommendationsList issues={analysis.issues || []} />
+            <BestPractices bestPractices={analysis.bestPractices || []} />
+          </TabsContent>
 
-        <TabsContent value="previews" className="space-y-6 sm:space-y-8 mt-6">
-          <GooglePreview title={analysis.title} description={analysis.description} url={analysis.url} />
-          <SocialPreviews 
-            title={analysis.title} 
-            description={analysis.description}
-            url={analysis.url}
-            ogTags={analysis.ogTags}
-            twitterTags={analysis.twitterTags}
-          />
-        </TabsContent>
+          <TabsContent value="previews" className="space-y-6 sm:space-y-8 mt-6">
+            <GooglePreview title={analysis.title} description={analysis.description} url={analysis.url} />
+            <SocialPreviews 
+              title={analysis.title} 
+              description={analysis.description}
+              url={analysis.url}
+              ogTags={analysis.ogTags}
+              twitterTags={analysis.twitterTags}
+            />
+          </TabsContent>
 
-        <TabsContent value="tags" className="mt-6">
-          <TagsList 
-            title={analysis.title}
-            description={analysis.description}
-            charset={analysis.charset}
-            viewport={analysis.viewport}
-            canonical={analysis.canonical}
-            language={analysis.language}
-            robots={analysis.robots}
-            ogTags={analysis.ogTags}
-            twitterTags={analysis.twitterTags}
-            otherTags={analysis.otherTags}
-          />
-        </TabsContent>
+          <TabsContent value="tags" className="mt-6">
+            <TagsList 
+              title={analysis.title}
+              description={analysis.description}
+              charset={analysis.charset}
+              viewport={analysis.viewport}
+              canonical={analysis.canonical}
+              language={analysis.language}
+              robots={analysis.robots}
+              ogTags={analysis.ogTags}
+              twitterTags={analysis.twitterTags}
+              otherTags={analysis.otherTags}
+            />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
