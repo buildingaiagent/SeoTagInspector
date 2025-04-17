@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangle, XCircle, Info } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { AlertTriangle, XCircle, Info, CheckCircle } from "lucide-react";
 
 interface Issue {
   type: "error" | "warning" | "info";
@@ -12,22 +12,28 @@ interface RecommendationsListProps {
 }
 
 export default function RecommendationsList({ issues }: RecommendationsListProps) {
+  // Count issues by type to display in the header
+  const errorCount = issues.filter(issue => issue.type === "error").length;
+  const warningCount = issues.filter(issue => issue.type === "warning").length;
+  const infoCount = issues.filter(issue => issue.type === "info").length;
+
   if (issues.length === 0) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Issues & Recommendations</CardTitle>
+      <Card className="border border-green-100 shadow-sm">
+        <CardHeader className="bg-green-50 border-b border-green-100 pb-3">
+          <CardTitle className="text-green-800 flex items-center gap-2">
+            <CheckCircle className="h-5 w-5 text-green-600" />
+            All Checks Passed
+          </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="flex items-center justify-center p-6 text-center">
+        <CardContent className="bg-white rounded-b-lg">
+          <div className="flex items-center justify-center py-8 text-center">
             <div>
-              <div className="rounded-full w-12 h-12 bg-green-100 flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+              <div className="rounded-full w-16 h-16 bg-green-100 flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
               <h3 className="text-lg font-medium text-slate-800 mb-2">No issues found</h3>
-              <p className="text-slate-500 max-w-md">Your website has all the necessary SEO tags and follows best practices.</p>
+              <p className="text-slate-600 max-w-md">Your website has all the necessary SEO tags and follows best practices.</p>
             </div>
           </div>
         </CardContent>
@@ -36,24 +42,65 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
   }
 
   return (
-    <Card>
-      <CardHeader className="bg-slate-50 border-b border-slate-200 px-4 py-3">
-        <CardTitle>Issues & Recommendations</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 space-y-4">
-        {issues.map((issue, index) => (
-          <div key={index} className="flex items-start">
-            <div className="flex-shrink-0 mt-0.5">
-              {issue.type === "error" && <XCircle className="h-5 w-5 text-red-500" />}
-              {issue.type === "warning" && <AlertTriangle className="h-5 w-5 text-amber-500" />}
-              {issue.type === "info" && <Info className="h-5 w-5 text-blue-500" />}
-            </div>
-            <div className="ml-3">
-              <h4 className="text-sm font-medium">{issue.message}</h4>
-              <p className="mt-1 text-sm text-slate-500">{issue.recommendation}</p>
-            </div>
+    <Card className="border border-slate-200 shadow-sm overflow-hidden">
+      <CardHeader className="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200 px-4 py-3 space-y-1">
+        <CardTitle className="flex items-center justify-between">
+          <span>Issues & Recommendations</span>
+          <div className="flex items-center gap-1.5 text-xs">
+            {errorCount > 0 && (
+              <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded-full flex items-center gap-1">
+                <XCircle className="h-3 w-3" /> {errorCount}
+              </span>
+            )}
+            {warningCount > 0 && (
+              <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full flex items-center gap-1">
+                <AlertTriangle className="h-3 w-3" /> {warningCount}
+              </span>
+            )}
+            {infoCount > 0 && (
+              <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full flex items-center gap-1">
+                <Info className="h-3 w-3" /> {infoCount}
+              </span>
+            )}
           </div>
-        ))}
+        </CardTitle>
+        <CardDescription className="text-xs text-slate-500">
+          Fix these issues to improve your website's SEO performance
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="p-0 divide-y divide-slate-100">
+        {issues.map((issue, index) => {
+          let bgColor = "bg-white";
+          let iconColor = "text-blue-500";
+          let borderColor = "border-l-blue-500";
+          let Icon = Info;
+          
+          if (issue.type === "error") {
+            bgColor = "bg-red-50";
+            iconColor = "text-red-500";
+            borderColor = "border-l-red-500";
+            Icon = XCircle;
+          } else if (issue.type === "warning") {
+            bgColor = "bg-amber-50";
+            iconColor = "text-amber-500";
+            borderColor = "border-l-amber-500";
+            Icon = AlertTriangle;
+          }
+          
+          return (
+            <div key={index} className={`p-4 ${bgColor} border-l-4 ${borderColor}`}>
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 mt-0.5">
+                  <Icon className={`h-5 w-5 ${iconColor}`} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium">{issue.message}</h4>
+                  <p className="mt-1 text-sm text-slate-600">{issue.recommendation}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </CardContent>
     </Card>
   );

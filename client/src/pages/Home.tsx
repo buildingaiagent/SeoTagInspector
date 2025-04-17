@@ -5,7 +5,8 @@ import AnalysisResults from "@/components/seo/AnalysisResults";
 import { useQuery } from "@tanstack/react-query";
 import { SEOAnalysis } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
-import { AlertCircle, Search, Share, CheckCircle } from "lucide-react";
+import { AlertCircle, Search, Share, CheckCircle, RotateCcw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -47,28 +48,25 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen font-sans text-slate-700">
-      <div className="mx-auto container px-4 py-8 max-w-7xl">
-        <header className="mb-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <div className="bg-gradient-to-b from-slate-50 to-slate-100 min-h-screen font-sans text-slate-700">
+      <div className="mx-auto container px-4 sm:px-6 py-6 sm:py-8 max-w-7xl">
+        <header className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
             <div>
-              <h1 className="text-3xl font-semibold text-slate-800">SEO Tag Analyzer</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                SEO Tag Analyzer
+              </h1>
               <p className="text-slate-500 mt-1">Visualize and analyze your website's meta tags</p>
             </div>
-            <div className="flex space-x-2">
-              <button 
-                onClick={handleReset} 
-                className="px-4 py-2 text-slate-600 bg-white rounded-lg border border-slate-200 shadow-sm hover:bg-slate-50 transition-colors"
-              >
-                <span className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 16 16" fill="currentColor">
-                    <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-                  </svg>
-                  Reset
-                </span>
-              </button>
-            </div>
+            <Button 
+              onClick={handleReset} 
+              variant="outline"
+              size="sm"
+              className="w-full sm:w-auto flex items-center justify-center gap-2"
+            >
+              <RotateCcw className="h-4 w-4" />
+              Reset
+            </Button>
           </div>
 
           <UrlForm 
@@ -78,7 +76,7 @@ export default function Home() {
         </header>
 
         {(isLoading || isFetching) && (
-          <div className="flex flex-col items-center justify-center py-12">
+          <div className="flex flex-col items-center justify-center py-10 sm:py-12">
             <div className="w-16 h-16 border-4 border-blue-200 border-t-primary rounded-full animate-spin mb-4"></div>
             <h2 className="text-xl font-medium text-slate-700 mb-2">Analyzing Meta Tags</h2>
             <p className="text-slate-500 text-center max-w-md">
@@ -88,24 +86,23 @@ export default function Home() {
         )}
 
         {isError && !isLoading && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg shadow-sm mb-8">
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
+          <div className="bg-red-50 border-l-4 border-red-500 p-4 sm:p-6 rounded-lg shadow-sm mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+              <div className="flex-shrink-0 flex items-center justify-center sm:justify-start">
                 <AlertCircle className="h-6 w-6 text-red-500" />
               </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-medium text-red-800">Error Analyzing Website</h3>
-                <p className="mt-1 text-red-700">
+              <div>
+                <h3 className="text-lg font-medium text-red-800 mb-2">Error Analyzing Website</h3>
+                <p className="text-red-700 mb-4">
                   {error instanceof Error ? error.message : "Failed to analyze website"}
                 </p>
-                <div className="mt-3">
-                  <button 
-                    onClick={() => handleAnalyze(url)} 
-                    className="inline-flex items-center px-4 py-2 border border-red-300 text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                  >
-                    Try Again
-                  </button>
-                </div>
+                <Button 
+                  onClick={() => handleAnalyze(url)} 
+                  variant="outline"
+                  className="w-full sm:w-auto border-red-300 text-red-700 hover:bg-red-50"
+                >
+                  Try Again
+                </Button>
               </div>
             </div>
           </div>
@@ -116,41 +113,41 @@ export default function Home() {
         )}
 
         {!isLoading && !analyzed && !isError && (
-          <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 text-center">
-            <div className="mx-auto w-64 h-40 rounded-lg mb-6 bg-gradient-to-br from-slate-100 to-blue-50 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-blue-400 opacity-80" viewBox="0 0 20 20" fill="currentColor">
+          <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 sm:p-6 text-center">
+            <div className="mx-auto w-32 h-32 sm:w-64 sm:h-40 rounded-lg mb-6 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 sm:h-20 sm:w-20 text-primary opacity-80" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold text-slate-800 mb-2">Analyze Your Website's SEO Tags</h2>
-            <p className="text-slate-500 max-w-lg mx-auto mb-6">
+            <h2 className="text-xl font-semibold text-slate-800 mb-3">Analyze Your Website's SEO Tags</h2>
+            <p className="text-slate-500 max-w-lg mx-auto mb-8">
               Enter a website URL above to check meta tags, generate previews, and get recommendations to improve your SEO and social sharing.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 p-1">
-                  <Search className="h-5 w-5 text-blue-500" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
+              <div className="flex items-start bg-slate-50 p-4 rounded-lg">
+                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                  <Search className="h-5 w-5 text-primary" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="font-medium text-slate-700">Search Previews</h3>
+                  <h3 className="font-medium text-slate-800">Search Previews</h3>
                   <p className="text-sm text-slate-500">See how your site appears in Google search results</p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <div className="flex-shrink-0 p-1">
-                  <Share className="h-5 w-5 text-blue-500" />
+              <div className="flex items-start bg-slate-50 p-4 rounded-lg">
+                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                  <Share className="h-5 w-5 text-primary" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="font-medium text-slate-700">Social Media Cards</h3>
+                  <h3 className="font-medium text-slate-800">Social Media Cards</h3>
                   <p className="text-sm text-slate-500">Preview Facebook, Twitter and LinkedIn appearances</p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <div className="flex-shrink-0 p-1">
-                  <CheckCircle className="h-5 w-5 text-blue-500" />
+              <div className="flex items-start bg-slate-50 p-4 rounded-lg sm:col-span-2 lg:col-span-1">
+                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div className="ml-3">
-                  <h3 className="font-medium text-slate-700">SEO Recommendations</h3>
+                  <h3 className="font-medium text-slate-800">SEO Recommendations</h3>
                   <p className="text-sm text-slate-500">Get tips to improve your meta tags and SEO</p>
                 </div>
               </div>
