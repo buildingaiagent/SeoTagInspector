@@ -16,22 +16,28 @@ const resources = {
       warnings: 'Warnings',
       info: 'Information',
       googlePreview: 'Google Preview',
-      socialPreviews: 'Social Media Previews'
+      socialPreviews: 'Social Media Previews',
+      pleaseEnterUrl: 'Please enter a URL',
+      pleaseEnterValidDomain: 'Please enter a valid domain',
+      pleaseEnterValidUrl: 'Please enter a valid URL'
     }
   },
-  es: {
+  tr: {
     translation: {
-      analyze: 'Analizar',
-      enterUrl: 'Ingrese la URL del sitio web (ej: ejemplo.com)',
-      overallScore: 'Puntuación General',
-      seoHealth: 'Salud SEO',
-      bestPractices: 'Mejores Prácticas',
-      recommendations: 'Recomendaciones',
-      errors: 'Errores',
-      warnings: 'Advertencias',
-      info: 'Información',
-      googlePreview: 'Vista previa de Google',
-      socialPreviews: 'Vistas previas de Redes Sociales'
+      analyze: 'Analiz Et',
+      enterUrl: 'Web sitesi URL\'sini girin (örn: ornek.com)',
+      overallScore: 'Genel Puan',
+      seoHealth: 'SEO Sağlığı',
+      bestPractices: 'En İyi Uygulamalar',
+      recommendations: 'Öneriler',
+      errors: 'Hatalar',
+      warnings: 'Uyarılar',
+      info: 'Bilgi',
+      googlePreview: 'Google Önizleme',
+      socialPreviews: 'Sosyal Medya Önizlemeleri',
+      pleaseEnterUrl: 'Lütfen bir URL girin',
+      pleaseEnterValidDomain: 'Lütfen geçerli bir alan adı girin',
+      pleaseEnterValidUrl: 'Lütfen geçerli bir URL girin'
     }
   }
 };
@@ -41,7 +47,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en',
+    fallbackLng: 'tr', // Changed default language to Turkish
     interpolation: {
       escapeValue: false
     }

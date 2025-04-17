@@ -142,8 +142,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
           value={technicalScore.score} 
           className="h-2 mb-2" 
         />
-        <style jsx>{`
-          :global(.h-2.mb-2 > div) {
+        <style>{`
+          .h-2.mb-2 > div {
             background-color: ${technicalScore.status === "good" ? "var(--green-500)" : 
             technicalScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
           }
@@ -170,8 +170,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
           value={contentScore.score} 
           className="h-2 mb-2" 
         />
-        <style jsx>{`
-          :global(.h-2.mb-2 > div) {
+        <style>{`
+          .h-2.mb-2 > div {
             background-color: ${contentScore.status === "good" ? "var(--green-500)" : 
             contentScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
           }
@@ -198,8 +198,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
           value={socialScore.score} 
           className="h-2 mb-2" 
         />
-        <style jsx>{`
-          :global(.h-2.mb-2 > div) {
+        <style>{`
+          .h-2.mb-2 > div {
             background-color: ${socialScore.status === "good" ? "var(--green-500)" : 
             socialScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
           }
@@ -226,8 +226,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
           value={structureScore.score} 
           className="h-2 mb-2" 
         />
-        <style jsx>{`
-          :global(.h-2.mb-2 > div) {
+        <style>{`
+          .h-2.mb-2 > div {
             background-color: ${structureScore.status === "good" ? "var(--green-500)" : 
             structureScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
           }
