@@ -140,14 +140,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         </div>
         <Progress 
           value={technicalScore.score} 
-          className="h-2 mb-2" 
+          className={`h-2 mb-2 ${getProgressClassNames(technicalScore.status)}`}
         />
-        <style>{`
-          .h-2.mb-2 > div {
-            background-color: ${technicalScore.status === "good" ? "var(--green-500)" : 
-            technicalScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
-          }
-        `}</style>
         <p className="text-sm text-slate-500 mt-1">{technicalScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
@@ -168,14 +162,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         </div>
         <Progress 
           value={contentScore.score} 
-          className="h-2 mb-2" 
+          className={`h-2 mb-2 ${getProgressClassNames(contentScore.status)}`}
         />
-        <style>{`
-          .h-2.mb-2 > div {
-            background-color: ${contentScore.status === "good" ? "var(--green-500)" : 
-            contentScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
-          }
-        `}</style>
         <p className="text-sm text-slate-500 mt-1">{contentScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
@@ -196,14 +184,8 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
         </div>
         <Progress 
           value={socialScore.score} 
-          className="h-2 mb-2" 
+          className={`h-2 mb-2 ${getProgressClassNames(socialScore.status)}`}
         />
-        <style>{`
-          .h-2.mb-2 > div {
-            background-color: ${socialScore.status === "good" ? "var(--green-500)" : 
-            socialScore.status === "fair" ? "var(--amber-500)" : "var(--red-500)"};
-          }
-        `}</style>
         <p className="text-sm text-slate-500 mt-1">{socialScore.details}</p>
         <div className="mt-3 text-xs text-slate-400">
           <Info className="h-3 w-3 inline mr-1" />
