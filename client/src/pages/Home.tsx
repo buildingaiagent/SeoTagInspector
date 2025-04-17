@@ -31,27 +31,49 @@ export default function Home() {
     setAnalyzed(false);
     
     try {
-      const response = await apiRequest("POST", "/api/analyze", { url: websiteUrl });
+      // Show a progress toast
+      toast({
+        title: "Analyzing Website",
+        description: "Fetching and parsing the website content...",
+      });
       
-      // Check if the response is valid JSON
-      try {
-        await response.json();
-        await refetch();
-        setAnalyzed(true);
-      } catch (jsonError) {
-        console.error("Error parsing JSON response:", jsonError);
-        toast({
-          variant: "destructive",
-          title: "Analysis Failed",
-          description: "Failed to parse the response from the server. Please try a different URL."
-        });
-      }
+      // Make the API request
+      await apiRequest("POST", "/api/analyze", { url: websiteUrl });
+      
+      // Fetch the analysis results
+      await refetch();
+      setAnalyzed(true);
+      
+      // Success toast
+      toast({
+        title: "Analysis Complete",
+        description: "Website analysis completed successfully.",
+        variant: "default",
+      });
     } catch (err) {
       console.error("Error in API request:", err);
+      
+      // Determine a user-friendly error message
+      let errorMessage = "Failed to analyze website";
+      
+      if (err instanceof Error) {
+        const message = err.message;
+        
+        if (message.includes("Failed to fetch")) {
+          errorMessage = "Could not reach the website. Please check the URL and try again.";
+        } else if (message.includes("content type")) {
+          errorMessage = "The URL doesn't return HTML content. Please try a different URL.";
+        } else if (message.includes("CORS") || message.includes("cross-origin")) {
+          errorMessage = "Website blocks external access. Try a different website.";
+        } else {
+          errorMessage = message;
+        }
+      }
+      
       toast({
         variant: "destructive",
         title: "Analysis Failed",
-        description: err instanceof Error ? err.message : "Failed to analyze website",
+        description: errorMessage,
       });
     }
   };

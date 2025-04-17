@@ -23,11 +23,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Fetch the HTML content from the URL
       try {
+        // Create an abort controller for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+        
         const response = await fetch(formattedUrl, {
           headers: {
             "User-Agent": "SEO-Analyzer-Tool/1.0",
+            "Accept": "text/html,application/xhtml+xml",
           },
+          redirect: 'follow',
+          signal: controller.signal,
         });
+        
+        // Clear the timeout
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
           return res.status(response.status).json({

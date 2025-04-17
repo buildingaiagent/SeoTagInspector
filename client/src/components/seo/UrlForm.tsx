@@ -27,13 +27,22 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
     // Try to create a URL object to validate
     try {
       // If URL doesn't have protocol, add https://
-      let urlToValidate = url;
-      if (!url.startsWith("http://") && !url.startsWith("https://")) {
-        urlToValidate = `https://${url}`;
+      let urlToValidate = url.trim();
+      if (!urlToValidate.startsWith("http://") && !urlToValidate.startsWith("https://")) {
+        urlToValidate = `https://${urlToValidate}`;
       }
       
-      new URL(urlToValidate);
-      onAnalyze(urlToValidate); // Using formatted URL with protocol
+      // Ensure it's a valid URL
+      const urlObj = new URL(urlToValidate);
+      
+      // Make sure it has a valid hostname (at least one dot)
+      if (!urlObj.hostname.includes('.')) {
+        setUrlError("Please enter a valid domain (e.g., example.com)");
+        return;
+      }
+      
+      // Use the sanitized URL for analysis
+      onAnalyze(urlToValidate);
     } catch (err) {
       setUrlError("Please enter a valid URL (e.g., example.com)");
     }
