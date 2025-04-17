@@ -128,8 +128,13 @@ export default function TagsList({
   const twitterCount = twitterTags ? Object.keys(twitterTags).length : 0;
   const otherCount = otherTags ? Object.keys(otherTags).length : 0;
   const missingCount = coreTags.filter(tag => !tag.exists).length + 
-    (ogCount === 0 ? 1 : 0) + 
-    (twitterCount === 0 ? 1 : 0);
+    (!ogTags || Object.keys(ogTags).length === 0 ? 1 : 0) + 
+    (!twitterTags || Object.keys(twitterTags).length === 0 ? 1 : 0);
+
+  // Don't show missing count if all required tags are present
+  const effectiveMissingCount = coreTags.every(tag => tag.exists) && 
+    ogTags && Object.keys(ogTags).length > 0 && 
+    twitterTags && Object.keys(twitterTags).length > 0 ? 0 : missingCount;
   
   return (
     <div className="space-y-6">
@@ -199,7 +204,7 @@ export default function TagsList({
               </button>
             )}
             
-            {missingCount > 0 && (
+            {effectiveMissingCount > 0 && (
               <button
                 onClick={() => setActiveSection("missing")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium ${
