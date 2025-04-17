@@ -1,5 +1,6 @@
 
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 import { Button } from './button';
 import {
   DropdownMenu,
@@ -12,29 +13,53 @@ import ReactCountryFlag from 'react-country-flag';
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language || 'tr');
+
+  // Update the language state when it changes
+  useEffect(() => {
+    const updateLanguage = () => {
+      setCurrentLanguage(i18n.language.substring(0, 2));
+    };
+    
+    // Set initial language
+    updateLanguage();
+    
+    // Add event listener
+    i18n.on('languageChanged', updateLanguage);
+    
+    // Clean up
+    return () => {
+      i18n.off('languageChanged', updateLanguage);
+    };
+  }, [i18n]);
+
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    // Explicitly save to localStorage
+    localStorage.setItem('i18nextLng', lang);
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="relative">
+        <Button variant="outline" size="icon" className="flex items-center justify-center p-0 h-9 w-9">
           <Globe className="h-4 w-4" />
-          <div className="absolute -bottom-1 -right-1">
+          <div className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4">
             <ReactCountryFlag 
               countryCode={currentLanguage === 'tr' ? 'TR' : 'GB'} 
               svg 
-              style={{ width: '14px', height: '14px' }} 
+              style={{ width: '12px', height: '12px' }} 
             />
           </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => i18n.changeLanguage('tr')} className="flex items-center gap-2">
-          <ReactCountryFlag countryCode="TR" svg />
+        <DropdownMenuItem onClick={() => handleLanguageChange('tr')} className="flex items-center gap-2">
+          <ReactCountryFlag countryCode="TR" svg style={{ width: '16px', height: '16px' }} />
           Türkçe
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => i18n.changeLanguage('en')} className="flex items-center gap-2">
-          <ReactCountryFlag countryCode="GB" svg />
+        <DropdownMenuItem onClick={() => handleLanguageChange('en')} className="flex items-center gap-2">
+          <ReactCountryFlag countryCode="GB" svg style={{ width: '16px', height: '16px' }} />
           English
         </DropdownMenuItem>
       </DropdownMenuContent>

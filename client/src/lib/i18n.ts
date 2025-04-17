@@ -19,7 +19,10 @@ const resources = {
       socialPreviews: 'Social Media Previews',
       pleaseEnterUrl: 'Please enter a URL',
       pleaseEnterValidDomain: 'Please enter a valid domain',
-      pleaseEnterValidUrl: 'Please enter a valid URL'
+      pleaseEnterValidUrl: 'Please enter a valid URL',
+      websiteUrl: 'Website URL',
+      enterWebsiteUrl: 'Enter website URL',
+      analyzeTags: 'Analyze Tags'
     }
   },
   tr: {
@@ -37,7 +40,10 @@ const resources = {
       socialPreviews: 'Sosyal Medya Önizlemeleri',
       pleaseEnterUrl: 'Lütfen bir URL girin',
       pleaseEnterValidDomain: 'Lütfen geçerli bir alan adı girin',
-      pleaseEnterValidUrl: 'Lütfen geçerli bir URL girin'
+      pleaseEnterValidUrl: 'Lütfen geçerli bir URL girin',
+      websiteUrl: 'Web Sitesi URL',
+      enterWebsiteUrl: 'Web sitesi URL\'sini girin',
+      analyzeTags: 'Etiketleri Analiz Et'
     }
   }
 };
@@ -47,9 +53,15 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'tr', // Changed default language to Turkish
+    fallbackLng: 'tr', // Default language is Turkish
+    lng: 'tr', // Force Turkish as the initial language
+    debug: true,
     interpolation: {
       escapeValue: false
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage']
     }
   });
 
