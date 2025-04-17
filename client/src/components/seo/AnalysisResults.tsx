@@ -7,14 +7,16 @@ import SocialPreviews from "./SocialPreviews";
 import TagsList from "./TagsList";
 import RecommendationsList from "./RecommendationsList";
 import BestPractices from "./BestPractices";
-import { ChartBar, Image, Code } from "lucide-react";
+import CategorySummaries from "./CategorySummaries";
+import SEOHealthOverview from "./SEOHealthOverview";
+import SEOExplainer from "./SEOExplainer";
+import { ChartBar, Image, Code, BarChart4, BookOpenCheck } from "lucide-react";
 
 interface AnalysisResultsProps {
   analysis: SEOAnalysis;
 }
 
 export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
-
   return (
     <div className="space-y-6 sm:space-y-8">
       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 sm:p-6">
@@ -25,9 +27,16 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
           </div>
         </div>
 
-        <Tabs defaultValue="analysis">
+        <Tabs defaultValue="summary">
           <div className="flex justify-end mb-6">
             <TabsList className="bg-slate-100 rounded-full p-1 h-auto">
+              <TabsTrigger 
+                value="summary" 
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
+              >
+                <BarChart4 className="h-4 w-4" />
+                <span className="hidden sm:inline">Summary</span>
+              </TabsTrigger>
               <TabsTrigger 
                 value="analysis" 
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
@@ -49,16 +58,30 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
                 <Code className="h-4 w-4" />
                 <span className="hidden sm:inline">All Tags</span>
               </TabsTrigger>
+              <TabsTrigger 
+                value="learn" 
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
+              >
+                <BookOpenCheck className="h-4 w-4" />
+                <span className="hidden sm:inline">Learn</span>
+              </TabsTrigger>
             </TabsList>
           </div>
 
-          <ScoreOverview analysis={analysis} />
+          {/* Summary Tab - New visual overview */}
+          <TabsContent value="summary" className="space-y-6">
+            <SEOHealthOverview analysis={analysis} />
+            <CategorySummaries analysis={analysis} />
+            <ScoreOverview analysis={analysis} />
+          </TabsContent>
 
+          {/* Original Analysis Tab */}
           <TabsContent value="analysis" className="space-y-6 mt-6">
             <RecommendationsList issues={analysis.issues || []} />
             <BestPractices bestPractices={analysis.bestPractices || []} />
           </TabsContent>
 
+          {/* Previews Tab */}
           <TabsContent value="previews" className="space-y-6 sm:space-y-8 mt-6">
             <GooglePreview title={analysis.title} description={analysis.description} url={analysis.url} />
             <SocialPreviews 
@@ -70,6 +93,7 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
             />
           </TabsContent>
 
+          {/* Tags Tab */}
           <TabsContent value="tags" className="mt-6">
             <TagsList 
               title={analysis.title}
@@ -83,6 +107,11 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
               twitterTags={analysis.twitterTags}
               otherTags={analysis.otherTags}
             />
+          </TabsContent>
+
+          {/* New Learning Tab */}
+          <TabsContent value="learn" className="mt-6">
+            <SEOExplainer />
           </TabsContent>
         </Tabs>
       </div>
