@@ -10,6 +10,7 @@ import BestPractices from "./BestPractices";
 import CategorySummaries from "./CategorySummaries";
 import SEOHealthOverview from "./SEOHealthOverview";
 import SEOExplainer from "./SEOExplainer";
+import ProgressTracker from "./ProgressTracker";
 import { ChartBar, Image, Code, BarChart4, BookOpenCheck } from "lucide-react";
 
 interface AnalysisResultsProps {

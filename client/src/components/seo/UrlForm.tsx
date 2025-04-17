@@ -14,38 +14,46 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
 
   const validateAndSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Clear previous errors
     setUrlError("");
-    
+
     // Basic validation
     if (!url.trim()) {
       setUrlError("Please enter a URL");
       return;
     }
-    
-    // Try to create a URL object to validate
-    try {
-      // If URL doesn't have protocol, add https://
-      let urlToValidate = url.trim();
-      if (!urlToValidate.startsWith("http://") && !urlToValidate.startsWith("https://")) {
-        urlToValidate = `https://${urlToValidate}`;
+
+    // Split URLs into an array
+    const urls = url.trim().split('\n').map(u => u.trim()).filter(u => u !== '');
+
+    // Validate each URL
+    const invalidUrls = urls.filter(u => {
+      try {
+        let urlToValidate = u;
+        if (!urlToValidate.startsWith("http://") && !urlToValidate.startsWith("https://")) {
+          urlToValidate = `https://${urlToValidate}`;
+        }
+        const urlObj = new URL(urlToValidate);
+        return !urlObj.hostname.includes('.');
+      } catch (err) {
+        return true;
       }
-      
-      // Ensure it's a valid URL
-      const urlObj = new URL(urlToValidate);
-      
-      // Make sure it has a valid hostname (at least one dot)
-      if (!urlObj.hostname.includes('.')) {
-        setUrlError("Please enter a valid domain (e.g., example.com)");
+    });
+
+    if (invalidUrls.length > 0) {
+        setUrlError(`Please enter valid URLs.  The following are invalid: ${invalidUrls.join(', ')}`);
         return;
-      }
-      
-      // Use the sanitized URL for analysis
-      onAnalyze(urlToValidate);
-    } catch (err) {
-      setUrlError("Please enter a valid URL (e.g., example.com)");
     }
+
+    // Analyze each URL
+    urls.forEach(u => {
+        let urlToAnalyze = u;
+        if (!urlToAnalyze.startsWith("http://") && !urlToAnalyze.startsWith("https://")) {
+          urlToAnalyze = `https://${urlToAnalyze}`;
+        }
+        onAnalyze(urlToAnalyze);
+    });
   };
 
   return (
@@ -60,13 +68,15 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <LinkIcon className="h-5 w-5 text-slate-400" />
               </div>
-              <Input
+              <textarea
                 id="url-input"
-                type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="Enter website URL (e.g., example.com)"
-                className={`h-12 pl-10 pr-12 ${urlError ? 'border-red-300 focus-visible:ring-red-500 focus-visible:ring-offset-red-300' : 'focus-visible:ring-primary'}`}
+                placeholder="Enter URLs (one per line) e.g.:
+example.com
+example.com/about
+example.com/contact"
+                className="min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2"
                 disabled={isLoading}
                 aria-invalid={!!urlError}
                 aria-describedby={urlError ? "url-error" : undefined}

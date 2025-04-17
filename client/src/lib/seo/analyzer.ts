@@ -147,6 +147,23 @@ export function getRecommendations(analysis: SEOAnalysis): string[] {
   // Twitter Card recommendations
   if (!analysis.twitterTags || Object.keys(analysis.twitterTags).length === 0) {
     recommendations.push("Add Twitter Card meta tags for better Twitter sharing");
+
+export function analyzeKeywords(content: string, title?: string, description?: string) {
+  const words = (content + ' ' + (title || '') + ' ' + (description || '')).toLowerCase()
+    .split(/\W+/)
+    .filter(word => word.length > 3);
+  
+  const frequency: Record<string, number> = {};
+  words.forEach(word => {
+    frequency[word] = (frequency[word] || 0) + 1;
+  });
+
+  return Object.entries(frequency)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 10)
+    .map(([word, count]) => ({ word, count }));
+}
+
   }
 
   return recommendations;
