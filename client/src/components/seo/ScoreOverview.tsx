@@ -10,14 +10,14 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
   // Calculate score metrics
   const score = analysis.score || 0;
   const roundedScore = Math.round(score);
-  
+
   // Determine score status
   let scoreStatus = "Good";
   let scoreColor = "text-green-500";
   let scoreStrokeColor = "var(--green-500)";
   let scoreBgColor = "bg-green-100";
   let scoreTextColor = "text-green-800";
-  
+
   if (score < 50) {
     scoreStatus = "Poor";
     scoreColor = "text-red-500";
@@ -35,25 +35,25 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
   // Calculate best practices metrics
   const totalBestPractices = analysis.bestPractices?.length || 0;
   const implementedBestPractices = analysis.bestPractices?.filter(p => p.implemented).length || 0;
-  
+
   // Determine core tags status
   const hasTitle = !!analysis.title;
   const hasDescription = !!analysis.description;
   const hasViewport = !!analysis.viewport;
-  
+
   const coreTagsComplete = hasTitle && hasDescription && hasViewport;
   const coreTagsStatus = coreTagsComplete ? "Complete" : "Incomplete";
-  
+
   // Determine social media status
   const hasOgTags = !!(analysis.ogTags && Object.keys(analysis.ogTags).length > 0);
   const hasTwitterTags = !!(analysis.twitterTags && Object.keys(analysis.twitterTags).length > 0);
-  
+
   const socialComplete = hasOgTags && hasTwitterTags;
   const socialPartial = hasOgTags || hasTwitterTags;
   let socialStatus = "Missing";
   let socialBgColor = "bg-red-100";
   let socialTextColor = "text-red-800";
-  
+
   if (socialComplete) {
     socialStatus = "Complete";
     socialBgColor = "bg-green-100";
@@ -69,9 +69,11 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
   const circumference = 2 * Math.PI * 16;
   const dashOffset = (offset / 100) * circumference;
 
+  const gradientColor = score >= 70 ? "from-green-100 to-green-50" : score >= 50 ? "from-yellow-100 to-yellow-50" : "from-red-100 to-red-50";
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-      <Card className="p-4 bg-gradient-to-b from-white to-slate-50 rounded-lg border border-slate-200 shadow-sm">
+      <Card className={`p-4 bg-gradient-to-b ${gradientColor} rounded-lg border border-slate-200 shadow-sm`}>
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-medium text-slate-600">Overall Score</h3>
           <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${scoreBgColor} ${scoreTextColor}`}>
@@ -116,7 +118,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
         </div>
       </Card>
 
-      <Card className="p-4 bg-gradient-to-b from-white to-slate-50 rounded-lg border border-slate-200 shadow-sm">
+      <Card className={`p-4 bg-gradient-to-b ${gradientColor} rounded-lg border border-slate-200 shadow-sm`}>
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-medium text-slate-600">Core Tags</h3>
           <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${coreTagsComplete ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
@@ -151,7 +153,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
         </div>
       </Card>
 
-      <Card className="p-4 bg-gradient-to-b from-white to-slate-50 rounded-lg border border-slate-200 shadow-sm sm:col-span-2 lg:col-span-1">
+      <Card className={`p-4 bg-gradient-to-b ${gradientColor} rounded-lg border border-slate-200 shadow-sm sm:col-span-2 lg:col-span-1`}>
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-medium text-slate-600">Social Media</h3>
           <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${socialBgColor} ${socialTextColor}`}>
