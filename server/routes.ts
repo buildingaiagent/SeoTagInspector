@@ -22,22 +22,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Fetch the HTML content from the URL
-      const response = await fetch(formattedUrl, {
-        headers: {
-          "User-Agent": "SEO-Analyzer-Tool/1.0",
-        },
-      });
+      try {
+        const response = await fetch(formattedUrl, {
+          headers: {
+            "User-Agent": "SEO-Analyzer-Tool/1.0",
+          },
+        });
 
-      if (!response.ok) {
-        return res.status(response.status).json({
-          message: `Failed to fetch website: ${response.statusText}`,
+        if (!response.ok) {
+          return res.status(response.status).json({
+            message: `Failed to fetch website: ${response.statusText}`,
+          });
+        }
+
+        // Make sure we get HTML content
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('text/html')) {
+          return res.status(415).json({
+            message: `The URL does not return HTML content. Content type: ${contentType || 'unknown'}`,
+          });
+        }
+
+        const html = await response.text();
+        const analysis = analyzeHTML(html, formattedUrl);
+
+        return res.status(200).json(analysis);
+      } catch (fetchError) {
+        console.error("Error fetching URL:", fetchError);
+        return res.status(500).json({
+          message: fetchError instanceof Error ? fetchError.message : "Failed to fetch website",
         });
       }
-
-      const html = await response.text();
-      const analysis = analyzeHTML(html, formattedUrl);
-
-      return res.status(200).json(analysis);
     } catch (error) {
       console.error("Error analyzing website:", error);
       return res.status(500).json({

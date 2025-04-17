@@ -28,16 +28,30 @@ export default function Home() {
 
   const handleAnalyze = async (websiteUrl: string) => {
     setUrl(websiteUrl);
+    setAnalyzed(false);
     
     try {
-      await apiRequest("POST", "/api/analyze", { url: websiteUrl });
-      await refetch();
-      setAnalyzed(true);
+      const response = await apiRequest("POST", "/api/analyze", { url: websiteUrl });
+      
+      // Check if the response is valid JSON
+      try {
+        await response.json();
+        await refetch();
+        setAnalyzed(true);
+      } catch (jsonError) {
+        console.error("Error parsing JSON response:", jsonError);
+        toast({
+          variant: "destructive",
+          title: "Analysis Failed",
+          description: "Failed to parse the response from the server. Please try a different URL."
+        });
+      }
     } catch (err) {
+      console.error("Error in API request:", err);
       toast({
         variant: "destructive",
         title: "Analysis Failed",
-        description: error instanceof Error ? error.message : "Failed to analyze website",
+        description: err instanceof Error ? err.message : "Failed to analyze website",
       });
     }
   };
@@ -53,7 +67,7 @@ export default function Home() {
         <header className="mb-6 sm:mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl sm:text-3xl font-semibold text-slate-800">
                 SEO Tag Analyzer
               </h1>
               <p className="text-slate-500 mt-1">Visualize and analyze your website's meta tags</p>

@@ -21,7 +21,7 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-700 bg-clip-text text-transparent mb-1">SEO Analysis Results</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-1">SEO Analysis Results</h2>
             <p className="text-slate-500">{`Analyzed ${analysis.url}`}</p>
           </div>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full sm:w-auto">
