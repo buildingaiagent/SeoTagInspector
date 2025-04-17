@@ -127,14 +127,13 @@ export default function TagsList({
   const ogCount = ogTags ? Object.keys(ogTags).length : 0;
   const twitterCount = twitterTags ? Object.keys(twitterTags).length : 0;
   const otherCount = otherTags ? Object.keys(otherTags).length : 0;
-  const missingCount = coreTags.filter(tag => !tag.exists).length + 
-    (!ogTags || Object.keys(ogTags).length === 0 ? 1 : 0) + 
-    (!twitterTags || Object.keys(twitterTags).length === 0 ? 1 : 0);
+  const missingCoreTags = coreTags.filter(tag => !tag.exists).length;
+  const missingOgTags = (!ogTags || Object.keys(ogTags).length === 0) ? 1 : 0;
+  const missingTwitterTags = (!twitterTags || Object.keys(twitterTags).length === 0) ? 1 : 0;
+  const missingCount = missingCoreTags + missingOgTags + missingTwitterTags;
 
-  // Don't show missing count if all required tags are present
-  const effectiveMissingCount = coreTags.every(tag => tag.exists) && 
-    ogTags && Object.keys(ogTags).length > 0 && 
-    twitterTags && Object.keys(twitterTags).length > 0 ? 0 : missingCount;
+  // Only show missing count if there are actually missing tags
+  const effectiveMissingCount = missingCount;
   
   return (
     <div className="space-y-6">
