@@ -67,7 +67,7 @@ export function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder={t("enterWebsiteUrl")} {/*Using translation for placeholder*/}
+                placeholder={t("enterWebsiteUrl")}
                 className={`h-12 pl-10 pr-12 ${urlError ? 'border-red-300 focus-visible:ring-red-500 focus-visible:ring-offset-red-300' : 'focus-visible:ring-primary'}`}
                 disabled={isLoading}
                 aria-invalid={!!urlError}
