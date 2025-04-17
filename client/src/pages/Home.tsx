@@ -7,6 +7,8 @@ import { SEOAnalysis } from "@shared/schema";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { AlertCircle, Search, Share, CheckCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LanguageSelector } from "@/components/ui/language-selector"; // Added import for language selector
+
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -29,23 +31,23 @@ export default function Home() {
   const handleAnalyze = async (websiteUrl: string) => {
     setUrl(websiteUrl);
     setAnalyzed(false);
-    
+
     try {
       // Show a progress toast
       toast({
         title: "Analyzing Website",
         description: "Fetching and parsing the website content...",
       });
-      
+
       // Make the API request - ensure we get the response as JSON
       const response = await apiRequest("POST", "/api/analyze", { url: websiteUrl });
       const data = await response.json();
-      
+
       // Instead of refetching, use the data we just got
       // This avoids the JSON parsing error since we handle it here
       queryClient.setQueryData(["/api/analyze"], data);
       setAnalyzed(true);
-      
+
       // Success toast
       toast({
         title: "Analysis Complete",
@@ -54,13 +56,13 @@ export default function Home() {
       });
     } catch (err) {
       console.error("Error in API request:", err);
-      
+
       // Determine a user-friendly error message
       let errorMessage = "Failed to analyze website";
-      
+
       if (err instanceof Error) {
         const message = err.message;
-        
+
         if (message.includes("Failed to fetch")) {
           errorMessage = "Could not reach the website. Please check the URL and try again.";
         } else if (message.includes("content type")) {
@@ -73,7 +75,7 @@ export default function Home() {
           errorMessage = message;
         }
       }
-      
+
       toast({
         variant: "destructive",
         title: "Analysis Failed",
@@ -91,6 +93,9 @@ export default function Home() {
     <div className="bg-gradient-to-b from-slate-50 to-slate-100 min-h-screen font-sans text-slate-700">
       <div className="mx-auto container px-4 sm:px-6 py-6 sm:py-8 max-w-7xl">
         <header className="mb-6 sm:mb-8">
+          <div className="flex justify-end mb-4"> {/* Added language selector container */}
+            <LanguageSelector /> {/* Added language selector component */}
+          </div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
             <div>
               <h1 className="text-2xl sm:text-3xl font-semibold text-slate-800">

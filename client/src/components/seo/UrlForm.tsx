@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2, LinkIcon, X, AlertCircle } from "lucide-react";
+import { useTranslation } from 'react-i18next'; //Import i18next hook
 
 interface UrlFormProps {
   onAnalyze: (url: string) => void;
   isLoading: boolean;
 }
 
-export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
+export function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
+  const { t } = useTranslation(); //Added translation hook
   const [url, setUrl] = useState("");
   const [urlError, setUrlError] = useState("");
 
@@ -20,7 +22,7 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
 
     // Basic validation
     if (!url.trim()) {
-      setUrlError("Please enter a URL");
+      setUrlError(t("pleaseEnterUrl")); //Using translation for error message
       return;
     }
 
@@ -31,20 +33,20 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
       if (!urlToValidate.startsWith("http://") && !urlToValidate.startsWith("https://")) {
         urlToValidate = `https://${urlToValidate}`;
       }
-      
+
       // Ensure it's a valid URL
       const urlObj = new URL(urlToValidate);
-      
+
       // Make sure it has a valid hostname (at least one dot)
       if (!urlObj.hostname.includes('.')) {
-        setUrlError("Please enter a valid domain (e.g., example.com)");
+        setUrlError(t("pleaseEnterValidDomain")); //Using translation for error message
         return;
       }
-      
+
       // Use the sanitized URL for analysis
       onAnalyze(urlToValidate);
     } catch (err) {
-      setUrlError("Please enter a valid URL (e.g., example.com)");
+      setUrlError(t("pleaseEnterValidUrl")); //Using translation for error message
     }
   };
 
@@ -54,7 +56,7 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-grow">
             <label htmlFor="url-input" className="sr-only">
-              Website URL
+              {t("websiteUrl")} {/*Using translation for label*/}
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -65,7 +67,7 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="Enter website URL (e.g., example.com)"
+                placeholder={t("enterWebsiteUrl")} {/*Using translation for placeholder*/}
                 className={`h-12 pl-10 pr-12 ${urlError ? 'border-red-300 focus-visible:ring-red-500 focus-visible:ring-offset-red-300' : 'focus-visible:ring-primary'}`}
                 disabled={isLoading}
                 aria-invalid={!!urlError}
@@ -77,7 +79,7 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
                     type="button"
                     onClick={() => setUrl("")}
                     className="text-slate-400 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
-                    aria-label="Clear URL"
+                    aria-label={t("clearUrl")} {/*Using translation for aria-label*/}
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -99,10 +101,10 @@ export default function UrlForm({ onAnalyze, isLoading }: UrlFormProps) {
             {isLoading ? (
               <span className="flex items-center justify-center">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Analyzing...
+                {t("analyzing")} {/*Using translation for analyzing*/}
               </span>
             ) : (
-              "Analyze Tags"
+              t("analyzeTags") {/*Using translation for analyzeTags*/}
             )}
           </Button>
         </div>
