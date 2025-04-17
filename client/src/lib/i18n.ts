@@ -40,7 +40,36 @@ const resources = {
       socialMediaCards: 'Social Media Cards',
       previewSocial: 'Preview Facebook, Twitter and LinkedIn appearances',
       seoRecommendations: 'SEO Recommendations',
-      getTips: 'Get tips to improve your meta tags and SEO'
+      getTips: 'Get tips to improve your meta tags and SEO',
+      analyzeComplete: 'Analysis Complete',
+      analysisSuccess: 'Website analysis completed successfully.',
+      
+      // Analysis Results
+      seoAnalysisResults: 'SEO Analysis Results',
+      analyzed: 'Analyzed',
+      summary: 'Summary',
+      analysis: 'Analysis',
+      previews: 'Previews',
+      allTags: 'All Tags',
+      learn: 'Learn',
+      noAnalysisResults: 'No analysis results available',
+      overallSeoHealth: 'Overall SEO Health',
+      yourWebsiteHas: 'Your website has excellent SEO implementation with minimal issues.',
+      criticalIssues: 'Critical Issues',
+      improvementAreas: 'Improvement Areas',
+      implemented: 'Implemented',
+      technicalSeo: 'Technical SEO',
+      content: 'Content',
+      socialSharing: 'Social Sharing',
+      structure: 'Structure',
+      good: 'Good',
+      needsWork: 'Needs Work',
+      critical: 'Critical',
+      allEssentialElements: 'All essential elements present',
+      includesViewport: 'Includes viewport, charset, language, and robots',
+      includesTitle: 'Includes title and meta description',
+      includesOpenGraph: 'Includes Open Graph and Twitter Card tags',
+      includesCanonical: 'Includes canonical URLs and page structure'
     }
   },
   tr: {
@@ -79,7 +108,36 @@ const resources = {
       socialMediaCards: 'Sosyal Medya Kartları',
       previewSocial: 'Facebook, Twitter ve LinkedIn görünümlerini önizleyin',
       seoRecommendations: 'SEO Önerileri',
-      getTips: 'Meta etiketlerinizi ve SEO\'nuzu iyileştirmek için ipuçları alın'
+      getTips: 'Meta etiketlerinizi ve SEO\'nuzu iyileştirmek için ipuçları alın',
+      analyzeComplete: 'Analiz Tamamlandı',
+      analysisSuccess: 'Web sitesi analizi başarıyla tamamlandı.',
+      
+      // Analysis Results
+      seoAnalysisResults: 'SEO Analiz Sonuçları',
+      analyzed: 'Analiz edilen',
+      summary: 'Özet',
+      analysis: 'Analiz',
+      previews: 'Önizlemeler',
+      allTags: 'Tüm Etiketler',
+      learn: 'Öğren',
+      noAnalysisResults: 'Analiz sonucu mevcut değil',
+      overallSeoHealth: 'Genel SEO Sağlığı',
+      yourWebsiteHas: 'Web siteniz minimal sorunlarla mükemmel SEO uygulamasına sahip.',
+      criticalIssues: 'Kritik Sorunlar',
+      improvementAreas: 'İyileştirme Alanları',
+      implemented: 'Uygulanmış',
+      technicalSeo: 'Teknik SEO',
+      content: 'İçerik',
+      socialSharing: 'Sosyal Paylaşım',
+      structure: 'Yapı',
+      good: 'İyi',
+      needsWork: 'İyileştirme Gerekli',
+      critical: 'Kritik',
+      allEssentialElements: 'Tüm gerekli elementler mevcut',
+      includesViewport: 'Viewport, charset, dil ve robots içerir',
+      includesTitle: 'Başlık ve meta açıklama içerir',
+      includesOpenGraph: 'Open Graph ve Twitter Card etiketleri içerir',
+      includesCanonical: 'Canonical URL\'ler ve sayfa yapısı içerir'
     }
   }
 };

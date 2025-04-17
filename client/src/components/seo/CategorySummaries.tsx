@@ -4,6 +4,7 @@ import { SEOAnalysis } from "@shared/schema";
 import { CheckCircle, AlertTriangle, XCircle, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useTranslation } from 'react-i18next';
 
 interface CategorySummariesProps {
   analysis: SEOAnalysis;

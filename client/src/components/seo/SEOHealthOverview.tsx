@@ -2,12 +2,15 @@ import { Card } from "@/components/ui/card";
 import { SEOAnalysis } from "@shared/schema";
 import { BarChart, CircleCheckBig, AlertCircle, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from 'react-i18next';
 
 interface SEOHealthOverviewProps {
   analysis: SEOAnalysis;
 }
 
 export default function SEOHealthOverview({ analysis }: SEOHealthOverviewProps) {
+  const { t } = useTranslation();
+  
   // Calculate health metrics
   const score = analysis.score || 0;
   const issues = analysis.issues || [];
@@ -49,53 +52,47 @@ export default function SEOHealthOverview({ analysis }: SEOHealthOverviewProps) 
         
         <div className="flex-grow space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-            <h3 className="text-lg font-semibold text-slate-800">Overall SEO Health</h3>
+            <h3 className="text-lg font-semibold text-slate-800">{t('overallSeoHealth')}</h3>
             <Badge className={`${healthColor} border text-sm py-1 px-3 whitespace-nowrap`}>
-              {healthStatus}
+              {t(healthStatus.toLowerCase(), healthStatus)}
             </Badge>
           </div>
           
           <p className="text-slate-600">
-            {score >= 90 
-              ? "Your website has excellent SEO implementation with minimal issues."
-              : score >= 70
-                ? "Your website has good SEO implementation with a few areas for improvement."
-                : score >= 50
-                  ? "Your website has fair SEO implementation with several important improvements needed."
-                  : "Your website has poor SEO implementation with critical issues that need attention."}
+            {t('yourWebsiteHas')}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3">
             <div className="bg-slate-100 rounded-md p-3 flex flex-col items-center justify-center">
               <span className="text-2xl font-semibold text-slate-800">{Math.round(score)}%</span>
-              <span className="text-xs text-slate-500">Overall Score</span>
+              <span className="text-xs text-slate-500">{t('overallScore')}</span>
             </div>
             
             <div className="bg-slate-100 rounded-md p-3 flex flex-col items-center justify-center">
               <span className="text-2xl font-semibold text-slate-800">{implementationRate}%</span>
-              <span className="text-xs text-slate-500">Implemented</span>
+              <span className="text-xs text-slate-500">{t('implemented')}</span>
             </div>
             
             <div className="bg-slate-100 rounded-md p-3 flex flex-col items-center justify-center">
               <div className="flex items-center gap-1">
                 <span className="text-2xl font-semibold text-slate-800">{errorCount}</span>
-                <span className="text-xs bg-red-100 text-red-800 px-1.5 py-0.5 rounded">Errors</span>
+                <span className="text-xs bg-red-100 text-red-800 px-1.5 py-0.5 rounded">{t('errors')}</span>
               </div>
-              <span className="text-xs text-slate-500">Critical Issues</span>
+              <span className="text-xs text-slate-500">{t('criticalIssues')}</span>
             </div>
             
             <div className="bg-slate-100 rounded-md p-3 flex flex-col items-center justify-center">
               <div className="flex items-center gap-1">
                 <span className="text-2xl font-semibold text-slate-800">{warningCount}</span>
-                <span className="text-xs bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">Warnings</span>
+                <span className="text-xs bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">{t('warnings')}</span>
               </div>
-              <span className="text-xs text-slate-500">Improvement Areas</span>
+              <span className="text-xs text-slate-500">{t('improvementAreas')}</span>
             </div>
           </div>
           
           <div className="pt-2 text-sm text-slate-500 flex items-center gap-1">
             <Info className="h-4 w-4" />
-            <span>This overview shows the health of your SEO implementation at a glance</span>
+            <span>{t('seoHealth')}</span>
           </div>
         </div>
       </div>

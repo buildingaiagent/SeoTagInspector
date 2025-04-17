@@ -12,16 +12,19 @@ import SEOHealthOverview from "./SEOHealthOverview";
 import SEOExplainer from "./SEOExplainer";
 import ProgressTracker from "./ProgressTracker";
 import { ChartBar, Image, Code, BarChart4, BookOpenCheck } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface AnalysisResultsProps {
   analysis: SEOAnalysis;
 }
 
 export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
+  const { t } = useTranslation();
+
   if (!analysis) {
     return (
       <div className="flex items-center justify-center h-64">
-        <p className="text-slate-500">No analysis results available</p>
+        <p className="text-slate-500">{t('noAnalysisResults')}</p>
       </div>
     );
   }
@@ -31,8 +34,8 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-1">SEO Analysis Results</h2>
-            <p className="text-slate-500">{`Analyzed ${analysis.url}`}</p>
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-1">{t('seoAnalysisResults')}</h2>
+            <p className="text-slate-500">{`${t('analyzed')} ${analysis.url}`}</p>
           </div>
         </div>
 
@@ -44,35 +47,35 @@ export default function AnalysisResults({ analysis }: AnalysisResultsProps) {
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <BarChart4 className="h-4 w-4" />
-                <span className="hidden sm:inline">Summary</span>
+                <span className="hidden sm:inline">{t('summary')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="analysis" 
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <ChartBar className="h-4 w-4" />
-                <span className="hidden sm:inline">Analysis</span>
+                <span className="hidden sm:inline">{t('analysis')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="previews" 
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <Image className="h-4 w-4" />
-                <span className="hidden sm:inline">Previews</span>
+                <span className="hidden sm:inline">{t('previews')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="tags" 
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <Code className="h-4 w-4" />
-                <span className="hidden sm:inline">All Tags</span>
+                <span className="hidden sm:inline">{t('allTags')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="learn" 
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <BookOpenCheck className="h-4 w-4" />
-                <span className="hidden sm:inline">Learn</span>
+                <span className="hidden sm:inline">{t('learn')}</span>
               </TabsTrigger>
             </TabsList>
           </div>
