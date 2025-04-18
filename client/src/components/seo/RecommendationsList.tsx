@@ -13,6 +13,8 @@ interface RecommendationsListProps {
 }
 
 export default function RecommendationsList({ issues }: RecommendationsListProps) {
+  const { t } = useTranslation();
+  
   // Count issues by type to display in the header
   const errorCount = issues.filter(issue => issue.type === "error").length;
   const warningCount = issues.filter(issue => issue.type === "warning").length;
@@ -24,7 +26,7 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
         <CardHeader className="bg-green-50 border-b border-green-100 pb-3">
           <CardTitle className="text-green-800 flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-green-600" />
-            All Checks Passed
+            {t('allChecksPassed')}
           </CardTitle>
         </CardHeader>
         <CardContent className="bg-white rounded-b-lg">
@@ -33,8 +35,8 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
               <div className="rounded-full w-16 h-16 bg-green-100 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-lg font-medium text-slate-800 mb-2">No issues found</h3>
-              <p className="text-slate-600 max-w-md">Your website has all the necessary SEO tags and follows best practices.</p>
+              <h3 className="text-lg font-medium text-slate-800 mb-2">{t('noIssuesFound')}</h3>
+              <p className="text-slate-600 max-w-md">{t('yourWebsiteHasAll')}</p>
             </div>
           </div>
         </CardContent>
@@ -46,7 +48,7 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
     <Card className="border border-slate-200 shadow-sm overflow-hidden">
       <CardHeader className="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200 px-4 py-3 space-y-1">
         <CardTitle className="flex items-center justify-between">
-          <span>Issues & Recommendations</span>
+          <span>{t('issuesRecommendations')}</span>
           <div className="flex items-center gap-1.5 text-xs">
             {errorCount > 0 && (
               <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -66,7 +68,7 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
           </div>
         </CardTitle>
         <CardDescription className="text-xs text-slate-500">
-          Fix these issues to improve your website's SEO performance
+          {t('fixIssues')}
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0 divide-y divide-slate-100">
@@ -98,25 +100,25 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
                   <h4 className="text-sm font-medium">{issue.message}</h4>
                   <p className="mt-1 text-sm text-slate-600">{issue.recommendation}</p>
                   <div className="mt-2 p-2 bg-slate-50 rounded-md border border-slate-200">
-                    <h5 className="text-xs font-semibold text-slate-700 mb-1">Action Steps:</h5>
+                    <h5 className="text-xs font-semibold text-slate-700 mb-1">{t('actionSteps')}</h5>
                     <ol className="text-xs text-slate-600 list-decimal list-inside space-y-1">
                       {issue.type === "error" ? (
                         <>
-                          <li>Prioritize fixing this issue as it significantly impacts SEO</li>
-                          <li>Review the provided recommendation carefully</li>
-                          <li>Implement the changes in your HTML metadata</li>
-                          <li>Re-run the analysis to verify the fix</li>
+                          <li>{t('prioritizeFix')}</li>
+                          <li>{t('reviewRecommendation')}</li>
+                          <li>{t('implementChanges')}</li>
+                          <li>{t('rerunAnalysis')}</li>
                         </>
                       ) : issue.type === "warning" ? (
                         <>
-                          <li>Consider addressing this issue to improve SEO performance</li>
-                          <li>Follow the recommendation guidelines</li>
-                          <li>Test the changes to ensure they meet requirements</li>
+                          <li>{t('considerAddressing')}</li>
+                          <li>{t('followGuidelines')}</li>
+                          <li>{t('testChanges')}</li>
                         </>
                       ) : (
                         <>
-                          <li>Review this suggestion for potential improvements</li>
-                          <li>Implement if aligned with your SEO strategy</li>
+                          <li>{t('reviewSuggestion')}</li>
+                          <li>{t('implementIfAligned')}</li>
                         </>
                       )}
                     </ol>

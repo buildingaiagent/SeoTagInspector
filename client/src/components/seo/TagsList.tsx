@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, AlertTriangle, XCircle, Copy } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 interface TagsListProps {
   title?: string;
@@ -24,6 +25,7 @@ interface TagItemProps {
 }
 
 function TagItem({ name, content, status, recommendation }: TagItemProps) {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   
   const statusClasses = {
@@ -39,9 +41,9 @@ function TagItem({ name, content, status, recommendation }: TagItemProps) {
   };
 
   const statusLabels = {
-    good: "Good",
-    warning: "Warning",
-    error: "Missing"
+    good: t('good'),
+    warning: t('warning'),
+    error: t('missing')
   };
 
   const statusColors = {
@@ -84,7 +86,7 @@ function TagItem({ name, content, status, recommendation }: TagItemProps) {
         )}
         {copied && (
           <div className="absolute right-2 top-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
-            Copied!
+            {t('complete')}!
           </div>
         )}
       </div>
@@ -110,6 +112,7 @@ export default function TagsList({
   twitterTags,
   otherTags,
 }: TagsListProps) {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState<string>("core");
   
   // Calculate tag counts for categories
@@ -149,7 +152,7 @@ export default function TagsList({
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
-              Core Tags
+              {t('coreTags')}
               <span className="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full">
                 {coreCount}
               </span>
