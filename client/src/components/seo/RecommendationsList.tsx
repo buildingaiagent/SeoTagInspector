@@ -47,8 +47,8 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
   return (
     <Card className="border border-slate-200 shadow-sm overflow-hidden">
       <CardHeader className="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200 px-4 py-3 space-y-1">
-        <CardTitle className="flex items-center justify-between">
-          <span>{t('issuesRecommendations')}</span>
+        <CardTitle className="flex items-center justify-between whitespace-normal">
+          <span className="whitespace-normal">{t('issuesRecommendations')}</span>
           <div className="flex items-center gap-1.5 text-xs">
             {errorCount > 0 && (
               <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -67,7 +67,7 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
             )}
           </div>
         </CardTitle>
-        <CardDescription className="text-xs text-slate-500">
+        <CardDescription className="text-xs text-slate-500 whitespace-normal">
           {t('fixIssues')}
         </CardDescription>
       </CardHeader>
@@ -100,25 +100,25 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
                   <h4 className="text-sm font-medium">{issue.message}</h4>
                   <p className="mt-1 text-sm text-slate-600">{issue.recommendation}</p>
                   <div className="mt-2 p-2 bg-slate-50 rounded-md border border-slate-200">
-                    <h5 className="text-xs font-semibold text-slate-700 mb-1">{t('actionSteps')}</h5>
+                    <h5 className="text-xs font-semibold text-slate-700 mb-1 whitespace-normal">{t('actionSteps')}</h5>
                     <ol className="text-xs text-slate-600 list-decimal list-inside space-y-1">
                       {issue.type === "error" ? (
                         <>
-                          <li>{t('prioritizeFix')}</li>
-                          <li>{t('reviewRecommendation')}</li>
-                          <li>{t('implementChanges')}</li>
-                          <li>{t('rerunAnalysis')}</li>
+                          <li className="whitespace-normal">{t('prioritizeFix')}</li>
+                          <li className="whitespace-normal">{t('reviewRecommendation')}</li>
+                          <li className="whitespace-normal">{t('implementChanges')}</li>
+                          <li className="whitespace-normal">{t('rerunAnalysis')}</li>
                         </>
                       ) : issue.type === "warning" ? (
                         <>
-                          <li>{t('considerAddressing')}</li>
-                          <li>{t('followGuidelines')}</li>
-                          <li>{t('testChanges')}</li>
+                          <li className="whitespace-normal">{t('considerAddressing')}</li>
+                          <li className="whitespace-normal">{t('followGuidelines')}</li>
+                          <li className="whitespace-normal">{t('testChanges')}</li>
                         </>
                       ) : (
                         <>
-                          <li>{t('reviewSuggestion')}</li>
-                          <li>{t('implementIfAligned')}</li>
+                          <li className="whitespace-normal">{t('reviewSuggestion')}</li>
+                          <li className="whitespace-normal">{t('implementIfAligned')}</li>
                         </>
                       )}
                     </ol>

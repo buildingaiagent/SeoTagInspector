@@ -119,7 +119,24 @@ const resources = {
       titleTooLong: 'Title tag too long',
       missingOgTags: 'Missing Open Graph tags',
       missingTwitterTags: 'Missing Twitter Card tags',
-      missingCanonical: 'Missing canonical URL'
+      missingCanonical: 'Missing canonical URL',
+      
+      // RecommendationsList Component
+      issuesRecommendations: 'Issues and Recommendations',
+      fixIssues: 'Fix these issues to improve your website\'s SEO performance',
+      actionSteps: 'Action Steps:',
+      prioritizeFix: 'Prioritize fixing this issue as it significantly impacts SEO',
+      reviewRecommendation: 'Review the provided recommendations carefully',
+      implementChanges: 'Implement changes in your HTML metadata',
+      rerunAnalysis: 'Re-run analysis to verify the fix',
+      considerAddressing: 'Consider addressing this issue to improve SEO performance',
+      followGuidelines: 'Follow the recommendation guidelines',
+      testChanges: 'Test to ensure changes meet requirements',
+      reviewSuggestion: 'Review this suggestion for potential improvements',
+      implementIfAligned: 'Implement if aligned with your SEO strategy',
+      seoBestPractices: 'SEO Best Practices',
+      implementedCount: 'Implemented',
+      industryStandard: 'Industry standard practices for optimal SEO performance'
     }
   },
   tr: {
@@ -193,7 +210,6 @@ const resources = {
       seoBestPractices: 'SEO En İyi Uygulamaları',
       implementedCount: 'Uygulanmış',
       industryStandard: 'Optimal SEO performansı için sektör standardı uygulamalar',
-      missing: 'Eksik',
       
       // RecommendationsList Component
       issuesRecommendations: 'Sorunlar ve Öneriler',
@@ -256,7 +272,6 @@ const resources = {
       justNow: 'Az önce',
       incomplete: 'Tamamlanmamış',
       partial: 'Kısmi',
-      missing: 'Eksik',
       missingOgImageDimensions: 'Og:image boyutları eksik',
       
       // CategorySummaries Component
