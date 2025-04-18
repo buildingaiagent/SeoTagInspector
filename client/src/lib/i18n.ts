@@ -97,7 +97,29 @@ const resources = {
       addOgTags: 'Add Open Graph tags for better social media sharing',
       addTwitterTags: 'Add Twitter Card tags for better Twitter sharing',
       addImageDimensions: 'Add image dimensions for better social media display',
-      allChecksPassed: 'No missing tags found! Great job'
+      allChecksPassed: 'No missing tags found! Great job',
+      
+      // ScoreOverview Component
+      outOf: 'out of',
+      checksPassed: 'checks passed',
+      lastAnalyzed: 'Last analyzed',
+      justNow: 'Just now',
+      incomplete: 'Incomplete',
+      partial: 'Partial',
+      missing: 'Missing',
+      missingOgImageDimensions: 'Missing og:image dimensions',
+      
+      // CategorySummaries Component
+      someElementsMissing: 'Some elements missing or incomplete',
+      criticalElementsMissing: 'Critical elements missing',
+      missingViewport: 'Missing viewport meta tag',
+      missingCharset: 'Missing charset definition',
+      missingTitle: 'Missing title tag',
+      missingDescription: 'Missing meta description',
+      titleTooLong: 'Title tag too long',
+      missingOgTags: 'Missing Open Graph tags',
+      missingTwitterTags: 'Missing Twitter Card tags',
+      missingCanonical: 'Missing canonical URL'
     }
   },
   tr: {
@@ -225,7 +247,29 @@ const resources = {
       duplicateContentIssues: 'Yinelenen içerik sorunlarını önlemek için SEO için önemli',
       addOgTags: 'Daha iyi sosyal medya paylaşımı için Open Graph etiketleri ekleyin',
       addTwitterTags: 'Daha iyi Twitter paylaşımı için Twitter Kart etiketleri ekleyin',
-      addImageDimensions: 'Daha iyi sosyal medya görüntüleme için görüntü boyutlarını ekleyin'
+      addImageDimensions: 'Daha iyi sosyal medya görüntüleme için görüntü boyutlarını ekleyin',
+      
+      // ScoreOverview Component
+      outOf: 'üzerinden',
+      checksPassed: 'kontrol geçti',
+      lastAnalyzed: 'Son analiz',
+      justNow: 'Az önce',
+      incomplete: 'Tamamlanmamış',
+      partial: 'Kısmi',
+      missing: 'Eksik',
+      missingOgImageDimensions: 'Og:image boyutları eksik',
+      
+      // CategorySummaries Component
+      someElementsMissing: 'Bazı öğeler eksik veya tamamlanmamış',
+      criticalElementsMissing: 'Kritik öğeler eksik',
+      missingViewport: 'Viewport meta etiketi eksik',
+      missingCharset: 'Karakter kodlaması tanımı eksik',
+      missingTitle: 'Başlık etiketi eksik',
+      missingDescription: 'Meta açıklama eksik',
+      titleTooLong: 'Başlık etiketi çok uzun',
+      missingOgTags: 'Open Graph etiketleri eksik',
+      missingTwitterTags: 'Twitter Kart etiketleri eksik',
+      missingCanonical: 'Kanonik URL eksik'
     }
   }
 };

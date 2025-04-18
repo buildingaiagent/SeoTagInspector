@@ -53,16 +53,16 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
 
   const socialComplete = hasOgTags && hasTwitterTags;
   const socialPartial = hasOgTags || hasTwitterTags;
-  let socialStatus = "Missing";
+  let socialStatus = t('missing');
   let socialBgColor = "bg-red-100";
   let socialTextColor = "text-red-800";
 
   if (socialComplete) {
-    socialStatus = "Complete";
+    socialStatus = t('complete');
     socialBgColor = "bg-green-100";
     socialTextColor = "text-green-800";
   } else if (socialPartial) {
-    socialStatus = "Partial";
+    socialStatus = t('partial');
     socialBgColor = "bg-amber-100";
     socialTextColor = "text-amber-800";
   }
@@ -78,7 +78,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       <Card className={`p-4 bg-gradient-to-b ${gradientColor} rounded-lg border border-slate-200 shadow-sm`}>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-medium text-slate-600">Overall Score</h3>
+          <h3 className="text-sm font-medium text-slate-600">{t('overallScore')}</h3>
           <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${scoreBgColor} ${scoreTextColor}`}>
             {scoreStatus}
           </span>
@@ -114,16 +114,16 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
           </div>
           <div className="ml-4">
             <p className="text-sm">
-              <span className="font-medium">{implementedBestPractices}</span> out of <span className="font-medium">{totalBestPractices}</span> checks passed
+              <span className="font-medium">{implementedBestPractices}</span> {t('outOf')} <span className="font-medium">{totalBestPractices}</span> {t('checksPassed')}
             </p>
-            <p className="text-xs text-slate-500 mt-1">Last analyzed: Just now</p>
+            <p className="text-xs text-slate-500 mt-1">{t('lastAnalyzed')}: {t('justNow')}</p>
           </div>
         </div>
       </Card>
 
       <Card className={`p-4 bg-gradient-to-b ${gradientColor} rounded-lg border border-slate-200 shadow-sm`}>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-medium text-slate-600">Core Tags</h3>
+          <h3 className="text-sm font-medium text-slate-600">{t('coreTags')}</h3>
           <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${coreTagsComplete ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
             {coreTagsStatus}
           </span>
@@ -135,7 +135,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
             ) : (
               <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
             )}
-            <span className="text-sm">Title Tag</span>
+            <span className="text-sm">{t('titleTag')}</span>
           </div>
           <div className="flex items-center">
             {hasDescription ? (
@@ -143,7 +143,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
             ) : (
               <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
             )}
-            <span className="text-sm">Meta Description</span>
+            <span className="text-sm">{t('metaDescription')}</span>
           </div>
           <div className="flex items-center">
             {hasViewport ? (
@@ -151,14 +151,14 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
             ) : (
               <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
             )}
-            <span className="text-sm">Viewport</span>
+            <span className="text-sm">{t('viewport')}</span>
           </div>
         </div>
       </Card>
 
       <Card className={`p-4 bg-gradient-to-b ${gradientColor} rounded-lg border border-slate-200 shadow-sm sm:col-span-2 lg:col-span-1`}>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-medium text-slate-600">Social Media</h3>
+          <h3 className="text-sm font-medium text-slate-600">{t('socialMedia')}</h3>
           <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${socialBgColor} ${socialTextColor}`}>
             {socialStatus}
           </span>
@@ -170,7 +170,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
             ) : (
               <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
             )}
-            <span className="text-sm">Open Graph Tags</span>
+            <span className="text-sm">{t('openGraphTags')}</span>
           </div>
           <div className="flex items-center">
             {hasTwitterTags ? (
@@ -178,12 +178,12 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
             ) : (
               <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
             )}
-            <span className="text-sm">Twitter Card</span>
+            <span className="text-sm">{t('twitterCardTags')}</span>
           </div>
           {hasOgTags && analysis.ogTags?.["image"] && (!analysis.ogTags?.["image:width"] || !analysis.ogTags?.["image:height"]) && (
             <div className="flex items-center">
               <AlertTriangle className="h-4 w-4 text-amber-500 mr-2 flex-shrink-0" />
-              <span className="text-sm">Missing og:image dimensions</span>
+              <span className="text-sm">{t('missingOgImageDimensions')}</span>
             </div>
           )}
         </div>
