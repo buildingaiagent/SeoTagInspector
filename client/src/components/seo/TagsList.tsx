@@ -167,7 +167,7 @@ export default function TagsList({
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
-                Open Graph
+                {t('openGraphTags')}
                 <span className="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full">
                   {ogCount}
                 </span>
@@ -183,7 +183,7 @@ export default function TagsList({
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
-                Twitter Card
+                {t('twitterCardTags')}
                 <span className="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full">
                   {twitterCount}
                 </span>
@@ -199,7 +199,7 @@ export default function TagsList({
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
-                Other
+                {t('other')}
                 <span className="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full">
                   {otherCount}
                 </span>
@@ -215,7 +215,7 @@ export default function TagsList({
                     : "bg-red-100 text-red-700 hover:bg-red-200"
                 }`}
               >
-                Missing Tags
+                {t('missingTags')}
                 <span className="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full">
                   {missingCount}
                 </span>
@@ -228,11 +228,11 @@ export default function TagsList({
       {/* Content Sections */}
       {activeSection === "core" && (
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-slate-800">Core Meta Tags</h3>
+          <h3 className="text-lg font-medium text-slate-800">{t('coreMetaTags')}</h3>
           
           {title && (
             <TagItem 
-              name="Title" 
+              name={t('title')} 
               content={`<title>${title}</title>`}
               status="good"
             />
@@ -240,7 +240,7 @@ export default function TagsList({
           
           {description && (
             <TagItem 
-              name="Meta Description" 
+              name={t('metaDescription')} 
               content={`<meta name="description" content="${description}">`}
               status="good"
             />
@@ -248,7 +248,7 @@ export default function TagsList({
           
           {viewport && (
             <TagItem 
-              name="Viewport" 
+              name={t('viewport')} 
               content={`<meta name="viewport" content="${viewport}">`}
               status="good"
             />
@@ -256,7 +256,7 @@ export default function TagsList({
           
           {charset && (
             <TagItem 
-              name="Charset" 
+              name={t('charset')} 
               content={`<meta charset="${charset}">`}
               status="good"
             />
@@ -264,7 +264,7 @@ export default function TagsList({
 
           {canonical && (
             <TagItem
-              name="Canonical URL"
+              name={t('canonicalURL')}
               content={`<link rel="canonical" href="${canonical}">`}
               status="good"
             />
@@ -272,7 +272,7 @@ export default function TagsList({
 
           {language && (
             <TagItem
-              name="Language Attribute"
+              name={t('language')}
               content={`<html lang="${language}">`}
               status="good"
             />
@@ -280,10 +280,10 @@ export default function TagsList({
 
           {robots && (
             <TagItem
-              name="Robots"
+              name={t('robots')}
               content={`<meta name="robots" content="${robots}">`}
               status={robots.includes("noindex") ? "warning" : "good"}
-              recommendation={robots.includes("noindex") ? "This page is being blocked from search engines" : undefined}
+              recommendation={robots.includes("noindex") ? t('blockedFromSearch') : undefined}
             />
           )}
 
@@ -297,7 +297,7 @@ export default function TagsList({
       
       {activeSection === "og" && (
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-slate-800">Open Graph Tags</h3>
+          <h3 className="text-lg font-medium text-slate-800">{t('openGraphTags')}</h3>
           
           {ogTags && Object.keys(ogTags).length > 0 ? (
             Object.entries(ogTags).map(([key, value]) => (
@@ -336,7 +336,7 @@ export default function TagsList({
       
       {activeSection === "twitter" && (
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-slate-800">Twitter Card Tags</h3>
+          <h3 className="text-lg font-medium text-slate-800">{t('twitterCardTags')}</h3>
           
           {twitterTags && Object.keys(twitterTags).length > 0 ? (
             Object.entries(twitterTags).map(([key, value]) => (
@@ -357,7 +357,7 @@ export default function TagsList({
       
       {activeSection === "other" && (
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-slate-800">Other Meta Tags</h3>
+          <h3 className="text-lg font-medium text-slate-800">{t('other')}</h3>
           
           {otherTags && Object.keys(otherTags).length > 0 ? (
             Object.entries(otherTags).map(([key, value]) => (
@@ -378,7 +378,7 @@ export default function TagsList({
 
       {activeSection === "missing" && (
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-slate-800">Missing Tags</h3>
+          <h3 className="text-lg font-medium text-slate-800">{t('missingTags')}</h3>
           
           {!title && (
             <TagItem
@@ -460,7 +460,7 @@ export default function TagsList({
             <div className="text-center p-4 bg-green-50 rounded-lg border border-green-100">
               <p className="text-green-700 flex items-center justify-center gap-2">
                 <CheckCircle className="h-5 w-5" />
-                <span>No missing tags found! Great job!</span>
+                <span>{t('allChecksPassed')}!</span>
               </p>
             </div>
           )}
