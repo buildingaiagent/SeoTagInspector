@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { SEOAnalysis } from "@shared/schema";
 import { CheckCircle, AlertTriangle, XCircle } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface ScoreOverviewProps {
   analysis: SEOAnalysis;
@@ -12,20 +13,22 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
   const roundedScore = Math.round(score);
 
   // Determine score status
-  let scoreStatus = "Good";
+  const { t } = useTranslation();
+  
+  let scoreStatus = t('good');
   let scoreColor = "text-green-500";
   let scoreStrokeColor = "var(--green-500)";
   let scoreBgColor = "bg-green-100";
   let scoreTextColor = "text-green-800";
 
   if (score < 50) {
-    scoreStatus = "Poor";
+    scoreStatus = t('critical');
     scoreColor = "text-red-500";
     scoreStrokeColor = "var(--red-500)";
     scoreBgColor = "bg-red-100";
     scoreTextColor = "text-red-800";
   } else if (score < 70) {
-    scoreStatus = "Fair";
+    scoreStatus = t('needsWork');
     scoreColor = "text-amber-500";
     scoreStrokeColor = "var(--amber-500)";
     scoreBgColor = "bg-amber-100";
@@ -42,7 +45,7 @@ export default function ScoreOverview({ analysis }: ScoreOverviewProps) {
   const hasViewport = !!analysis.viewport;
 
   const coreTagsComplete = hasTitle && hasDescription && hasViewport;
-  const coreTagsStatus = coreTagsComplete ? "Complete" : "Incomplete";
+  const coreTagsStatus = coreTagsComplete ? t('complete') : t('incomplete');
 
   // Determine social media status
   const hasOgTags = !!(analysis.ogTags && Object.keys(analysis.ogTags).length > 0);

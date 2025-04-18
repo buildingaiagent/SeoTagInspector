@@ -57,39 +57,39 @@ export default function CategorySummaries({ analysis }: CategorySummariesProps) 
       status = "fair";
       color = "amber";
       icon = <AlertTriangle className="h-5 w-5 text-amber-500" />;
-      details = "Some elements missing or incomplete";
+      details = t('someElementsMissing');
     } else {
-      details = "Critical elements missing";
+      details = t('criticalElementsMissing');
     }
 
     // Add specific details based on category
     switch (category) {
       case "Technical SEO":
         if (!analysis.viewport) {
-          details = "Missing viewport meta tag";
+          details = t('missingViewport');
         } else if (!analysis.charset) {
-          details = "Missing charset definition";
+          details = t('missingCharset');
         }
         break;
       case "Content":
         if (!analysis.title) {
-          details = "Missing title tag";
+          details = t('missingTitle');
         } else if (!analysis.description) {
-          details = "Missing meta description";
+          details = t('missingDescription');
         } else if (analysis.title && analysis.title.length > 60) {
-          details = "Title tag too long";
+          details = t('titleTooLong');
         }
         break;
       case "Social":
         if (!analysis.ogTags || Object.keys(analysis.ogTags).length === 0) {
-          details = "Missing Open Graph tags";
+          details = t('missingOgTags');
         } else if (!analysis.twitterTags || Object.keys(analysis.twitterTags).length === 0) {
-          details = "Missing Twitter Card tags";
+          details = t('missingTwitterTags');
         }
         break;
       case "Structure":
         if (!analysis.canonical) {
-          details = "Missing canonical URL";
+          details = t('missingCanonical');
         }
         break;
     }
