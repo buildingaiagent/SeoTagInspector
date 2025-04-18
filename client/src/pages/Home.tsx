@@ -202,6 +202,9 @@ export default function Home() {
           </div>
         )}
       </div>
+      <footer className="mt-8 pb-6 text-center text-sm text-slate-500">
+        Designed by Aydoğan Dağıdır
+      </footer>
     </div>
   );
 }
