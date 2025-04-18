@@ -289,7 +289,7 @@ export default function TagsList({
 
           {coreTags.every(tag => !tag.exists) && (
             <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">
-              <p className="text-slate-500">No core meta tags found on this page</p>
+              <p className="text-slate-500">{t('noCoreTags')}</p>
             </div>
           )}
         </div>
@@ -310,7 +310,7 @@ export default function TagsList({
             ))
           ) : (
             <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">
-              <p className="text-slate-500">No Open Graph tags found on this page</p>
+              <p className="text-slate-500">{t('noOgTags')}</p>
             </div>
           )}
 
@@ -319,7 +319,7 @@ export default function TagsList({
               name="og:image:width"
               content={`<meta property="og:image:width" content="1200">`}
               status="warning"
-              recommendation="Add image dimensions for better social media display"
+              recommendation={t('addImageDimensions')}
             />
           )}
 
@@ -328,7 +328,7 @@ export default function TagsList({
               name="og:image:height"
               content={`<meta property="og:image:height" content="630">`}
               status="warning"
-              recommendation="Add image dimensions for better social media display"
+              recommendation={t('addImageDimensions')}
             />
           )}
         </div>
@@ -349,7 +349,7 @@ export default function TagsList({
             ))
           ) : (
             <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">
-              <p className="text-slate-500">No Twitter Card tags found on this page</p>
+              <p className="text-slate-500">{t('noTwitterTags')}</p>
             </div>
           )}
         </div>
@@ -370,7 +370,7 @@ export default function TagsList({
             ))
           ) : (
             <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">
-              <p className="text-slate-500">No additional meta tags found on this page</p>
+              <p className="text-slate-500">{t('noOtherTags')}</p>
             </div>
           )}
         </div>
@@ -382,7 +382,7 @@ export default function TagsList({
           
           {!title && (
             <TagItem
-              name="Title"
+              name={t('title')}
               content={`<title>Your page title here</title>`}
               status="error"
             />
@@ -390,7 +390,7 @@ export default function TagsList({
           
           {!description && (
             <TagItem
-              name="Meta Description"
+              name={t('metaDescription')}
               content={`<meta name="description" content="A brief description of your page content">`}
               status="error"
             />
@@ -398,7 +398,7 @@ export default function TagsList({
           
           {!viewport && (
             <TagItem
-              name="Viewport"
+              name={t('viewport')}
               content={`<meta name="viewport" content="width=device-width, initial-scale=1.0">`}
               status="error"
             />
@@ -406,7 +406,7 @@ export default function TagsList({
           
           {!charset && (
             <TagItem
-              name="Charset"
+              name={t('charset')}
               content={`<meta charset="UTF-8">`}
               status="warning"
             />
@@ -414,16 +414,16 @@ export default function TagsList({
           
           {!canonical && (
             <TagItem
-              name="Canonical URL"
+              name={t('canonicalURL')}
               content={`<link rel="canonical" href="https://example.com/your-page-path">`}
               status="error"
-              recommendation="Important for SEO to prevent duplicate content issues"
+              recommendation={t('duplicateContentIssues')}
             />
           )}
           
           {!language && (
             <TagItem
-              name="Language Attribute"
+              name={t('language')}
               content={`<html lang="en">`}
               status="warning"
             />
@@ -431,26 +431,26 @@ export default function TagsList({
           
           {(!ogTags || Object.keys(ogTags).length === 0) && (
             <TagItem
-              name="Open Graph Tags"
+              name={t('openGraphTags')}
               content={`<meta property="og:title" content="Your title">
 <meta property="og:description" content="Your description">
 <meta property="og:image" content="https://example.com/image.jpg">
 <meta property="og:url" content="https://example.com/page">
 <meta property="og:type" content="website">`}
               status="error"
-              recommendation="Add Open Graph tags for better social media sharing"
+              recommendation={t('addOgTags')}
             />
           )}
           
           {(!twitterTags || Object.keys(twitterTags).length === 0) && (
             <TagItem
-              name="Twitter Card Tags"
+              name={t('twitterCardTags')}
               content={`<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Your title">
 <meta name="twitter:description" content="Your description">
 <meta name="twitter:image" content="https://example.com/image.jpg">`}
               status="warning"
-              recommendation="Add Twitter Card tags for better Twitter sharing"
+              recommendation={t('addTwitterTags')}
             />
           )}
 
