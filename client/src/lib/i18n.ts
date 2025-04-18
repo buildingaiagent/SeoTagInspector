@@ -69,7 +69,35 @@ const resources = {
       includesViewport: 'Includes viewport, charset, language, and robots',
       includesTitle: 'Includes title and meta description',
       includesOpenGraph: 'Includes Open Graph and Twitter Card tags',
-      includesCanonical: 'Includes canonical URLs and page structure'
+      includesCanonical: 'Includes canonical URLs and page structure',
+      
+      // TagsList Component
+      coreTags: 'Core Tags',
+      complete: 'Complete',
+      socialMedia: 'Social Media',
+      coreMetaTags: 'Core Meta Tags',
+      title: 'Title',
+      metaDescription: 'Meta Description',
+      viewport: 'Viewport',
+      charset: 'Charset',
+      language: 'Language',
+      canonicalURL: 'Canonical URL',
+      robots: 'Robots',
+      warning: 'Warning',
+      missingTags: 'Missing Tags',
+      other: 'Other',
+      openGraphTags: 'Open Graph Tags',
+      twitterCardTags: 'Twitter Card Tags',
+      noCoreTags: 'No core meta tags found on this page',
+      noOgTags: 'No Open Graph tags found on this page',
+      noTwitterTags: 'No Twitter Card tags found on this page',
+      noOtherTags: 'No additional meta tags found on this page',
+      blockedFromSearch: 'This page is being blocked from search engines',
+      duplicateContentIssues: 'Important for SEO to prevent duplicate content issues',
+      addOgTags: 'Add Open Graph tags for better social media sharing',
+      addTwitterTags: 'Add Twitter Card tags for better Twitter sharing',
+      addImageDimensions: 'Add image dimensions for better social media display',
+      allChecksPassed: 'No missing tags found! Great job'
     }
   },
   tr: {
@@ -186,7 +214,18 @@ const resources = {
       language: 'Dil',
       warning: 'Uyarı',
       missingTags: 'Eksik Etiketler',
-      other: 'Diğer'
+      other: 'Diğer',
+      robots: 'Robots',
+      metaDescription: 'Meta Açıklama',
+      noCoreTags: 'Bu sayfada çekirdek meta etiketleri bulunamadı',
+      noOgTags: 'Bu sayfada Open Graph etiketleri bulunamadı',
+      noTwitterTags: 'Bu sayfada Twitter Kart etiketleri bulunamadı',
+      noOtherTags: 'Bu sayfada ek meta etiketler bulunamadı',
+      blockedFromSearch: 'Bu sayfa arama motorlarından engelleniyor',
+      duplicateContentIssues: 'Yinelenen içerik sorunlarını önlemek için SEO için önemli',
+      addOgTags: 'Daha iyi sosyal medya paylaşımı için Open Graph etiketleri ekleyin',
+      addTwitterTags: 'Daha iyi Twitter paylaşımı için Twitter Kart etiketleri ekleyin',
+      addImageDimensions: 'Daha iyi sosyal medya görüntüleme için görüntü boyutlarını ekleyin'
     }
   }
 };
