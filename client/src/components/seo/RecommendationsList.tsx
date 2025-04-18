@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AlertTriangle, XCircle, Info, CheckCircle } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface Issue {
   type: "error" | "warning" | "info";

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, HelpCircle } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface BestPractice {
   name: string;
@@ -13,6 +14,8 @@ interface BestPracticesProps {
 }
 
 export default function BestPractices({ bestPractices }: BestPracticesProps) {
+  const { t } = useTranslation();
+  
   // Calculate summary stats
   const totalPractices = bestPractices.length;
   const implementedCount = bestPractices.filter(p => p.implemented).length;
@@ -22,7 +25,7 @@ export default function BestPractices({ bestPractices }: BestPracticesProps) {
     <Card className="border border-slate-200 shadow-sm overflow-hidden">
       <CardHeader className="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200 px-4 py-3 space-y-1">
         <CardTitle className="flex items-center justify-between">
-          <span>SEO Best Practices</span>
+          <span>{t('seoBestPractices')}</span>
           <Badge 
             variant="outline" 
             className={`
@@ -31,11 +34,11 @@ export default function BestPractices({ bestPractices }: BestPracticesProps) {
                 'bg-red-100 text-red-800'}
             `}
           >
-            {implementedCount}/{totalPractices} Implemented
+            {implementedCount}/{totalPractices} {t('implementedCount')}
           </Badge>
         </CardTitle>
         <CardDescription className="text-xs text-slate-500">
-          Industry standard practices for optimal SEO performance
+          {t('industryStandard')}
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
@@ -74,7 +77,7 @@ export default function BestPractices({ bestPractices }: BestPracticesProps) {
                   text-xs py-0.5 px-2 h-auto
                 `}
               >
-                {practice.implemented ? "Implemented" : "Missing"}
+                {practice.implemented ? t('implemented') : t('missing')}
               </Badge>
             </div>
           ))}

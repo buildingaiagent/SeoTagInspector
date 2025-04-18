@@ -137,7 +137,56 @@ const resources = {
       includesViewport: 'Viewport, charset, dil ve robots içerir',
       includesTitle: 'Başlık ve meta açıklama içerir',
       includesOpenGraph: 'Open Graph ve Twitter Card etiketleri içerir',
-      includesCanonical: 'Canonical URL\'ler ve sayfa yapısı içerir'
+      includesCanonical: 'Canonical URL\'ler ve sayfa yapısı içerir',
+      
+      // BestPractices Component
+      seoBestPractices: 'SEO En İyi Uygulamaları',
+      implementedCount: 'Uygulanmış',
+      industryStandard: 'Optimal SEO performansı için sektör standardı uygulamalar',
+      missing: 'Eksik',
+      
+      // RecommendationsList Component
+      issuesRecommendations: 'Sorunlar ve Öneriler',
+      fixIssues: 'Web sitenizin SEO performansını iyileştirmek için bu sorunları düzeltin',
+      allChecksPassed: 'Tüm Kontroller Geçti',
+      noIssuesFound: 'Hiçbir sorun bulunamadı',
+      yourWebsiteHasAll: 'Web sitenizde gerekli tüm SEO etiketleri bulunuyor ve en iyi uygulamaları takip ediyor.',
+      actionSteps: 'Aksiyon Adımları:',
+      prioritizeFix: 'Bu sorunu çözmek için önceliklendirin çünkü SEO\'yu önemli ölçüde etkiler',
+      reviewRecommendation: 'Verilen önerileri dikkatlice inceleyin',
+      implementChanges: 'Değişiklikleri HTML meta verilerinizde uygulayın',
+      rerunAnalysis: 'Düzeltmeyi doğrulamak için analizi tekrar çalıştırın',
+      considerAddressing: 'SEO performansını artırmak için bu sorunu ele almayı düşünün',
+      followGuidelines: 'Öneri yönergelerini takip edin',
+      testChanges: 'Değişikliklerin gereksinimleri karşıladığından emin olmak için test edin',
+      reviewSuggestion: 'Potansiyel iyileştirmeler için bu öneriyi gözden geçirin',
+      implementIfAligned: 'SEO stratejinizle uyumluysa uygulayın',
+      
+      // Description Length Issue
+      descriptionLength: 'Açıklama uzunluğu ({n} karakter) önerilen sınırları aşıyor',
+      keepDescription: 'Optimal görüntüleme için açıklama etiketlerini 120-160 karakter arasında tutun',
+      
+      // Title Tag
+      titleTag: 'Başlık Etiketi',
+      viewportMetaTag: 'Viewport Meta Etiketi',
+      characterEncoding: 'Karakter Kodlaması',
+      canonicalURL: 'Kanonik URL',
+      languageAttribute: 'Dil Özniteliği',
+      openGraphTags: 'Open Graph Etiketleri',
+      twitterCardTags: 'Twitter Kart Etiketleri',
+      
+      // TagsList Component 
+      coreTags: 'Çekirdek Etiketler',
+      complete: 'Tam',
+      socialMedia: 'Sosyal Medya',
+      coreMetaTags: 'Çekirdek Meta Etiketler',
+      title: 'Başlık',
+      viewport: 'Viewport',
+      charset: 'Karakter Seti',
+      language: 'Dil',
+      warning: 'Uyarı',
+      missingTags: 'Eksik Etiketler',
+      other: 'Diğer'
     }
   }
 };
