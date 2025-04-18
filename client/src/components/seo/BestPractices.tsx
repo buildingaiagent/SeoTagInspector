@@ -57,12 +57,12 @@ export default function BestPractices({ bestPractices }: BestPracticesProps) {
                   <XCircle className="h-5 w-5 text-red-500 mr-3 flex-shrink-0" />
                 )}
                 <div>
-                  <span className="text-sm font-medium text-slate-800">{practice.name}</span>
+                  <span className="text-sm font-medium text-slate-800 whitespace-normal">{t(practice.name)}</span>
                   {practice.description && (
                     <div className="group relative inline-block ml-1">
                       <HelpCircle className="h-3.5 w-3.5 text-slate-400 cursor-help" />
-                      <div className="absolute left-0 top-full mt-1 w-64 p-2 bg-white shadow-lg rounded text-xs text-slate-600 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-50 border border-slate-200">
-                        {practice.description}
+                      <div className="absolute left-0 top-full mt-1 w-64 p-2 bg-white shadow-lg rounded text-xs text-slate-600 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-50 border border-slate-200 whitespace-normal">
+                        {t(practice.description)}
                       </div>
                     </div>
                   )}

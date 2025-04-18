@@ -232,6 +232,20 @@ const resources = {
       descriptionLength: 'Açıklama uzunluğu ({n} karakter) önerilen sınırları aşıyor',
       keepDescription: 'Optimal görüntüleme için açıklama etiketlerini 120-160 karakter arasında tutun',
       
+      // Description length warning message (from the image)
+      "Description length (192 characters) exceeds recommendation": "Açıklama uzunluğu (192 karakter) önerileni aşıyor",
+      "Keep description tags between 120-160 characters for optimal display": "Optimal görüntüleme için açıklama etiketlerini 120-160 karakter arasında tutun",
+      
+      // Tag names from checklist
+      "Title Tag": "Başlık Etiketi",
+      "Meta Description": "Meta Açıklama",
+      "Viewport Meta Tag": "Viewport Meta Etiketi",
+      "Character Encoding": "Karakter Kodlaması",
+      "Canonical URL": "Kanonik URL",
+      "Language Attribute": "Dil Özniteliği", 
+      "Open Graph Tags": "Open Graph Etiketleri",
+      "Twitter Card Tags": "Twitter Kart Etiketleri",
+      
       // Title Tag
       titleTag: 'Başlık Etiketi',
       viewportMetaTag: 'Viewport Meta Etiketi',
