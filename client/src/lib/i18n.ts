@@ -236,6 +236,25 @@ const resources = {
       "Description length (192 characters) exceeds recommendation": "Açıklama uzunluğu (192 karakter) önerileni aşıyor",
       "Keep description tags between 120-160 characters for optimal display": "Optimal görüntüleme için açıklama etiketlerini 120-160 karakter arasında tutun",
       
+      // Warning messages with dynamic length
+      "Description length (45 characters) exceeds recommendation": "Açıklama uzunluğu (45 karakter) önerileni aşıyor",
+      "Description length (183 characters) exceeds recommendation": "Açıklama uzunluğu (183 karakter) önerileni aşıyor",
+      "Description length (201 characters) exceeds recommendation": "Açıklama uzunluğu (201 karakter) önerileni aşıyor",
+      "Description length (175 characters) exceeds recommendation": "Açıklama uzunluğu (175 karakter) önerileni aşıyor",
+      "Description tag is too short": "Açıklama etiketi çok kısa",
+      "Missing meta description": "Meta açıklama eksik",
+      "Add a descriptive meta description between 120-160 characters": "120-160 karakter arasında açıklayıcı bir meta açıklama ekleyin",
+      
+      // Description length tooltip texts
+      "Title tag is present and has optimal length": "Başlık etiketi mevcut ve optimal uzunlukta",
+      "Meta description is present but exceeds optimal length": "Meta açıklama mevcut fakat optimal uzunluğu aşıyor",
+      "Responsive viewport meta tag is present": "Duyarlı viewport meta etiketi mevcut",
+      "Character encoding is specified": "Karakter kodlaması belirtilmiş",
+      "Canonical URL is specified": "Kanonik URL belirtilmiş",
+      "HTML language attribute is specified": "HTML dil özniteliği belirtilmiş",
+      "All essential Open Graph tags are present": "Tüm gerekli Open Graph etiketleri mevcut",
+      "All essential Twitter Card tags are present": "Tüm gerekli Twitter Kart etiketleri mevcut",
+      
       // Tag names from checklist
       "Title Tag": "Başlık Etiketi",
       "Meta Description": "Meta Açıklama",

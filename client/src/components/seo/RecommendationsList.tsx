@@ -97,8 +97,8 @@ export default function RecommendationsList({ issues }: RecommendationsListProps
                   <Icon className={`h-5 w-5 ${iconColor}`} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium">{issue.message}</h4>
-                  <p className="mt-1 text-sm text-slate-600">{issue.recommendation}</p>
+                  <h4 className="text-sm font-medium whitespace-normal">{t(issue.message)}</h4>
+                  <p className="mt-1 text-sm text-slate-600 whitespace-normal">{t(issue.recommendation)}</p>
                   <div className="mt-2 p-2 bg-slate-50 rounded-md border border-slate-200">
                     <h5 className="text-xs font-semibold text-slate-700 mb-1 whitespace-normal">{t('actionSteps')}</h5>
                     <ol className="text-xs text-slate-600 list-decimal list-inside space-y-1">
